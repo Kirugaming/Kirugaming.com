@@ -71,14 +71,17 @@ header h1 {
   margin: 20px;
   padding-bottom: 30px;
   border-radius: 5px;
-  background-color: white;
-  opacity: .7;
+  background-color: rgb(71, 66, 66);
 }
 
 .projectsTitle {
   font-family: "Roboto", sans-serif;
   padding-top: 10px;
+  padding-bottom: 10px;
   padding-left: 5%;
+  border-radius: 5px;
+  background-color: #003b3b;
+  color: rgb(212, 212, 212);
 }
 
 /* Project Oryx Page*/
@@ -86,6 +89,7 @@ header h1 {
 .project {
   font-family: "Roboto", sans-serif;
   text-align: center;
+  padding-top: 10px;
   padding-bottom: 10px;
 }
 
