@@ -71,7 +71,7 @@ header {
 .githubLink {
   text-decoration: underline;
   position:absolute; right:40px;
-  padding-top: 10px;
+  padding-top: 5px;
   margin-left: 5px;
   float: right;
   display: inline-block;
@@ -96,17 +96,13 @@ header {
   margin-left: 30px;
   margin-right: 30px;
   padding-top: 13px;
-  padding-left: 50px;
+  padding-left: 20px;
   padding-bottom: 13px;
   display: flex;
   background-color: white;
 }
 
 .pyBattleBody {
-  margin-top: -6px;
-  margin-left: 30px;
-  padding-top: 13px;
-  padding-left: 50px;
   background-color: white;
   line-height: 2;
   float: left;
@@ -114,7 +110,6 @@ header {
 
 .pyBattleSection i, .pyBattleSection a {
   text-decoration: underline;
-  margin-top: -6px;
   fill: black;
   background-color: white;
   font-size: 25px;
