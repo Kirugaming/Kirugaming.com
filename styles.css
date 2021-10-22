@@ -46,38 +46,14 @@ body {
   background-color: darkred;
 }
 
-header h1,header a {
-  float: left;
-  margin-top: 7px;
-  font-size: 20px;
-  color: #edf0f1;
-  text-decoration: none;
-  background-color: #1e2727;
-  font-weight: bold;
-}
+/* navbar */
 
-header {
+nav {
   display: flex;
-  padding-left: 6%;
-  padding-right: 6%;
-  padding-bottom: 5px;
   background-color: #1e2727;
 }
 
-.githubLink {
-  float: right;
-}
 
-.githubLink {
-  text-decoration: underline;
-  position:absolute; right:40px;
-  padding-top: 5px;
-  margin-left: 5px;
-  float: right;
-  display: inline-block;
-  fill: white;
-  font-size: 25px;
-}
 
 /* pyBattle Section */
 
