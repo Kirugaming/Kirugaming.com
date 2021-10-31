@@ -35,7 +35,6 @@
     }
 
     a {
-
       img {
         float: left;
         width: 2em;
@@ -47,6 +46,15 @@
         text-decoration: underline;
       }
     }
+  }
+  .pyBattleBottom {
+    margin-top: -.5em;
+    margin-right: 1.9em;
+    margin-left: 1.9em;
+    padding-bottom: 1em;
+    background-color: white;
+    border-radius: 5px;
+    display: none;
   }
 
   /* Future Section */
@@ -70,4 +78,21 @@
     border-radius: 5px;
     display: none;
   }
+
+  #dropdown:checked ~ .pyBattleSection {
+    @include dropdownFunction(inline-grid);
+  }
+  
+  #dropdown:checked ~ .pyBattleBottom {
+    @include dropdownFunction(flex);
+  }
+  
+  #dropdown2:checked ~ .dropdownSection {
+    @include dropdownFunction(flex);
+  }
+  #dropdown2:checked ~ .bottomSection {
+    @include dropdownFunction(flex);
+  }
+
 }
+

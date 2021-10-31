@@ -24,92 +24,10 @@
   a:link, a:visited {
     text-decoration: none;
   }
-  
-  body {
-
-    height: 100vh;
-    background: linear-gradient(
-      -45deg,
-      rgb(71, 66, 66),
-      #332c2c,
-      #2e3436,
-      #141a18
-    );
-    background-size: 400% 400%;
-    position: relative;
-    animation: backroundColor 10s ease-in-out infinite;
-    
-  }
-  @keyframes backroundColor {
-    0% {
-      background-position: 0 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0 50%;
-    }
-  }
-
-  .redHeader {
-    border: 2px outset darkred;
-    background-color: darkred;
-  }
   /* navbar */
-  nav {
-    display: flex;
-    justify-content: space-between;
-    background-color: #1e2727;
-    padding-top: .5em;
-    padding-bottom: .5em;
-
-    .navLogo {
-      margin-left: 4em;
-
-      img {
-        float: left;
-      }
-      h1 {
-        padding-top: 5px;
-        float: left;
-        color: white;
-      }
-    }
-
-    .githubLink {
-      margin-right: 4em;
-
-      img{
-        width: 2em;
-        /* for svg file i guess you have to use filter to change the color */
-        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(137deg) brightness(103%) contrast(101%);
-        margin-right: .1em;
-      }
-      h1 {
-        float: right;
-        padding-top: 3px;
-        color: white;
-      }
-    }
-  }
+@import "header";
 
 @import "mainArticles";
-  
-  #dropdown:checked ~ .pyBattleSection {
-    @include dropdownFunction(inline-grid);
-  }
-  
-  #dropdown:checked ~ .pyBattleBottom {
-    @include dropdownFunction(flex);
-  }
-  
-  #dropdown2:checked ~ .dropdownSection {
-    @include dropdownFunction(flex);
-  }
-  #dropdown2:checked ~ .bottomSection {
-    @include dropdownFunction(flex);
-  }
 
   footer {
     margin-top: 2.1em;

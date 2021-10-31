@@ -18,9 +18,10 @@ a:link, a:visited {
   text-decoration: none;
 }
 
+/* navbar */
 body {
   height: 100vh;
-  background: linear-gradient(-45deg, #474242, #332c2c, #2e3436, #141a18);
+  background: linear-gradient(-45deg, #474242, #2c2929, #2e3436, #141a18);
   background-size: 400% 400%;
   position: relative;
   -webkit-animation: backroundColor 10s ease-in-out infinite;
@@ -56,7 +57,6 @@ body {
   background-color: darkred;
 }
 
-/* navbar */
 nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -78,16 +78,31 @@ nav .navLogo img {
 }
 
 nav .navLogo h1 {
-  padding-top: 5px;
+  padding-top: 4px;
   float: left;
   color: white;
 }
 
-nav .githubLink {
-  margin-right: 4em;
+nav .myRedirects .aboutMe h1 {
+  float: left;
+  color: white;
+  padding-top: 4px;
 }
 
-nav .githubLink img {
+nav .myRedirects .aboutMe p {
+  color: white;
+  float: inline-start;
+  font-size: 1.7em;
+  margin-left: .5em;
+  margin-right: .5em;
+}
+
+nav .myRedirects .githubLink {
+  margin-right: 4em;
+  float: left;
+}
+
+nav .myRedirects .githubLink img {
   width: 2em;
   /* for svg file i guess you have to use filter to change the color */
   -webkit-filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(137deg) brightness(103%) contrast(101%);
@@ -95,10 +110,10 @@ nav .githubLink img {
   margin-right: .1em;
 }
 
-nav .githubLink h1 {
+nav .myRedirects .githubLink h1 {
   float: right;
-  padding-top: 3px;
   color: white;
+  padding-top: 4px;
 }
 
 .articleContainer {
@@ -158,6 +173,16 @@ nav .githubLink h1 {
   text-decoration: underline;
 }
 
+.articleContainer .pyBattleBottom {
+  margin-top: -.5em;
+  margin-right: 1.9em;
+  margin-left: 1.9em;
+  padding-bottom: 1em;
+  background-color: white;
+  border-radius: 5px;
+  display: none;
+}
+
 .articleContainer .dropdownSection {
   margin-top: -.5em;
   margin-left: 1.9em;
@@ -179,7 +204,7 @@ nav .githubLink h1 {
   display: none;
 }
 
-#dropdown:checked ~ .pyBattleSection {
+.articleContainer #dropdown:checked ~ .pyBattleSection {
   display: -ms-inline-grid;
   display: inline-grid;
   pointer-events: all;
@@ -187,7 +212,7 @@ nav .githubLink h1 {
           transform: translateY(0px);
 }
 
-#dropdown:checked ~ .pyBattleBottom {
+.articleContainer #dropdown:checked ~ .pyBattleBottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -196,7 +221,7 @@ nav .githubLink h1 {
           transform: translateY(0px);
 }
 
-#dropdown2:checked ~ .dropdownSection {
+.articleContainer #dropdown2:checked ~ .dropdownSection {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -205,7 +230,7 @@ nav .githubLink h1 {
           transform: translateY(0px);
 }
 
-#dropdown2:checked ~ .bottomSection {
+.articleContainer #dropdown2:checked ~ .bottomSection {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
