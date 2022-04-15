@@ -34,7 +34,16 @@
     text-align: center;
     background-color: #1e2727;
   }
-  
+
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
   @media only screen and (max-width: 600px) {
     /* header navbar */
     nav {
@@ -44,6 +53,20 @@
       .githubLink {
         margin-right: .5em;
       }
+
+      .myRedirects {
+        display: none;
+      }
+
+      .compressedRedirects {
+        display: block;
+        margin-right: 1em;
+
+        .dropdownContent {
+          right: 1rem;
+        }
+      }
+
     }
     .articleContainer {
       label {

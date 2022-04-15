@@ -59,14 +59,14 @@ nav .navLogo h1 {
   float: left;
   color: white;
 }
-nav .myRedirects .aboutMe h1 {
+nav .myRedirects h1 {
   float: left;
   color: white;
   padding-top: 4px;
 }
-nav .myRedirects .aboutMe p {
+nav .myRedirects p {
   color: white;
-  float: inline-start;
+  float: left;
   font-size: 1.7em;
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -85,6 +85,36 @@ nav .myRedirects .githubLink h1 {
   float: right;
   color: white;
   padding-top: 4px;
+}
+nav .compressedRedirects {
+  float: right;
+  margin-right: 4em;
+  display: none;
+}
+nav .compressedRedirects .dropdownButton {
+  background-color: #1e2727;
+  width: 2em;
+  border: none;
+  cursor: pointer;
+}
+nav .compressedRedirects .dropdownButton img {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(137deg) brightness(103%) contrast(101%);
+}
+nav .compressedRedirects .dropdownContent {
+  position: fixed;
+  right: 4rem;
+  padding: 0.5rem;
+  background-color: #1e2727;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+}
+nav .compressedRedirects .dropdownContent a {
+  text-align: right;
+  font-size: 1.5em;
+  padding-bottom: 0.5em;
+  display: flex;
+  color: white;
 }
 
 .articleContainer {
@@ -187,6 +217,14 @@ footer {
   background-color: #1e2727;
 }
 
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   /* header navbar */
   nav .navLogo {
@@ -194,6 +232,16 @@ footer {
   }
   nav .githubLink {
     margin-right: 0.5em;
+  }
+  nav .myRedirects {
+    display: none;
+  }
+  nav .compressedRedirects {
+    display: block;
+    margin-right: 1em;
+  }
+  nav .compressedRedirects .dropdownContent {
+    right: 1rem;
   }
 
   .articleContainer label {

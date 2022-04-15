@@ -51,22 +51,18 @@ nav {
 
     .myRedirects {
 
+      h1 {
+        float: left;
+        color: white;
+        padding-top: 4px;
+      }
 
-
-      .aboutMe {
-
-        h1 {
-          float: left;
-          color: white;
-          padding-top: 4px;
-        }
-        p {
-          color: white;
-          float:inline-start;
-          font-size: 1.7em;
-          margin-left: .5em;
-          margin-right: .5em;
-        }
+      p {
+        color: white;
+        float: left;
+        font-size: 1.7em;
+        margin-left: .5em;
+        margin-right: .5em;
       }
 
       .githubLink {
@@ -85,6 +81,41 @@ nav {
         }
       }
     }
+
+  .compressedRedirects {
+    float: right;
+    margin-right: 4em;
+    display: none;
+
+    .dropdownButton {
+      background-color: #1e2727;
+      width: 2em;
+      border: none;
+      cursor: pointer;
+
+      img {
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(137deg) brightness(103%) contrast(101%);
+      }
+    }
+
+    .dropdownContent {
+      position: fixed;
+      right: 4rem;
+      padding: .5rem;
+      background-color: #1e2727;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      border-radius: 5px;
+      z-index: 1;
+
+      a{
+        text-align: right;
+        font-size: 1.5em;
+        padding-bottom: .5em;
+        display: flex;
+        color: white;
+      }
+    }
+  }
 
     
   }
