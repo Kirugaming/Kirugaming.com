@@ -5,39 +5,140 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/aboutme/styles/aboutMe.css">
-    <title>Document</title>
+    <title>About Me</title>
 </head>
 <body>
-    <div class="redHeader"></div>
-    <nav>
-        <div class="navLogo">
-            <a href="../">
-                <!-- Website Link -->
-                <img src="/images/circlekiru.png" alt="Site Logo">
-                <h1>Kiru's Website</h1>
-            </a>
-        </div>
+<div class="redHeader"></div>
+<nav>
+    <div class="navLogo">
+        <a href="../">
+            <!-- Website Link -->
+            <img src="/images/circlekiru.png" alt="Site Logo">
+            <h1>Kiru's Website</h1>
+        </a>
+    </div>
 
-        <div class="myRedirects">
-            <a class="aboutMe" href="#">
-                <h1>About Me</h1>
-                <p>|</p>
-            </a>
-            <a href="https://github.com/Kirugaming">
-                <div class="githubLink">
+    <div class="myRedirects">
+        <a class="blog" href="/">
+            <h1>Blog in development?!</h1>
+            <p>|</p>
+        </a>
+        <a class="aboutMe" href="/aboutme/">
+            <h1>About Me</h1>
+            <p>|</p>
+        </a>
+        <a href="https://github.com/Kirugaming">
+            <div class="githubLink">
                 <!-- Github Link -->
                 <img src="../images/svg/github-brands.svg" alt="GitHub Logo">
                 <h1>GitHub</h1>
-                </div>
-            </a>
+            </div>
+        </a>
+    </div>
+
+    <div class="compressedRedirects">
+        <button onclick="compressedRedirects()" class="dropdownButton">
+            <img src="../images/svg/bars-solid.svg" alt="nav">
+        </button>
+        <div id="redirectDropdown" class="dropdownContent">
+            <a class="blog" href="/">Blog in development?!</a>
+            <a class="aboutMe" href="/aboutme/">About Me</a>
+            <a href="https://github.com/Kirugaming">Github</a>
         </div>
+    </div>
+    <script src="../nav.js"></script>
 
-    </nav>
 
+
+</nav>
+    <div class="divHeader">
+        <h1>About Me</h1>
+        <h2>Hey yo! It's me, Kiru!</h2>
+        <h1 style="color: #003b3b; margin-left: 5.5em">.</h1>
+    </div>
     <main>
-        <h1>My Portfolio</h1>
+        <div class="aboutMeSection">
+            <p>
+                Hola, you can call me by my pseudonym Kiru.
+                I am currently an aspiring computer science student looking to major and work in the computer science field, specifically in gaming development.
+                I often diverge and work on other small projects like this website and discord bots.
+                The programming languages that I know:
+            </p>
+            <ul>
+                <li>
+                    <img src="../images/Java_programming_language_logo.svg.png" alt="Java logo" style="width: 4rem">
+                    <p>Java</p>
+                </li>
+                <li>
+                    <img src="../images/1200px-Python-logo-notext.svg.png" alt="Python logo" style="width: 6.5rem">
+                    <p>Python</p>
+                </li>
+                <li>
+                    <img src="../images/CSS3_logo_and_wordmark.svg.png" alt="CSS logo" style="width: 5rem">
+                    <p>CSS</p>
+                </li>
+                <li>
+                    <img src="../images/1200px-ISO_C++_Logo.svg.png" alt="C++ logo" style="width: 6.2rem">
+                    <p>C++</p>
+                </li>
+            </ul>
+            <p>
+                I use many programming languages like Java, Python, and CSS, and I am currently learning C++.
+                Some of my Projects:
+            </p>
+            <ul>
+                <li>
+                    <a href="https://github.com/Kirugaming/pyBattle">
+                        <img src="../images/Screenshot%202022-04-18%20015056.png" alt="pybattle screenshot">
+                        <p>PyBattle</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/Kirugaming/KiruBot3.0">
+                        <img src="../images/Screenshot%202022-04-18%20015737.png" alt="kirubot screenshot">
+                        <p>KiruBot 3.0</p>
+                    </a>
+                </li>
+            </ul>
+            <p>
+                Please look forward to the many projects yet to come!
+                I love experimenting and messing with technology in my spare time. I have modded most of my Nintendo consoles and currently researching neat features of Linux that Windows lacks.
+                My favorite video games include Final Fantasy XIV Online, The Elder Scrolls V: Skyrim, Minecraft Java Edition, Destiny 1, And the Pokémon Series.
+            </p>
+            <ul>
+                <li>
+                    <img src="../images/capsule_616x353.jpg" alt="ffxiv">
+                    <p>Final Fantasy XIV Online</p>
+                </li>
+                <li>
+                    <img src="../images/header.jpg" alt="skyrim">
+                    <p>The Elder Scrolls V: Skyrim</p>
+                </li>
+                <li>
+                    <img src="../images/unnamed.webp" alt="minecraft">
+                    <p>Minecraft Java Edition</p>
+                </li>
+                <li>
+                    <img src="../images/Destiny-PC-Steam-840844.jpg" alt="destiny">
+                    <p>Destiny 1</p>
+                </li>
+                <li>
+                    <img src="../images/1280x720.webp" alt="pokemon">
+                    <p>The Pokémon Series</p>
+                </li>
+            </ul>
+            <!--TODO: Turn game list into a slideshow -->
+            <p>
+                If you need to contact me you can use the email link at the bottom of the page.
+            </p>
+        </div>
     </main>
+    <div class="bottom"></div>
 
 
+    <footer>
+        <a href ="mailto:kiruthegreat2@gmail.com">Email: Kiruthegreat2@gmail.com</a>
+        <div class="redHeader"></div>
+    </footer>
 </body>
 </html>

@@ -117,6 +117,38 @@ nav .compressedRedirects .dropdownContent a {
   color: white;
 }
 
+footer {
+  margin-top: 2.1em;
+  text-align: center;
+  background-color: #1e2727;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  nav .navLogo {
+    margin-left: 0.5em;
+  }
+  nav .githubLink {
+    margin-right: 0.5em;
+  }
+  nav .myRedirects {
+    display: none;
+  }
+  nav .compressedRedirects {
+    display: block;
+    margin-right: 1em;
+  }
+  nav .compressedRedirects .dropdownContent {
+    right: 1rem;
+  }
+}
 .articleContainer {
   display: flex;
   flex-direction: column;
@@ -211,39 +243,7 @@ nav .compressedRedirects .dropdownContent a {
   transform: translateY(0px);
 }
 
-footer {
-  margin-top: 2.1em;
-  text-align: center;
-  background-color: #1e2727;
-}
-
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
-}
-
 @media only screen and (max-width: 600px) {
-  /* header navbar */
-  nav .navLogo {
-    margin-left: 0.5em;
-  }
-  nav .githubLink {
-    margin-right: 0.5em;
-  }
-  nav .myRedirects {
-    display: none;
-  }
-  nav .compressedRedirects {
-    display: block;
-    margin-right: 1em;
-  }
-  nav .compressedRedirects .dropdownContent {
-    right: 1rem;
-  }
-
   .articleContainer label {
     text-align: center;
     padding: 1em 1em 1em 1em;

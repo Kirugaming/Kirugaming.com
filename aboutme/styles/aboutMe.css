@@ -105,13 +105,112 @@ nav .compressedRedirects .dropdownContent a {
   color: white;
 }
 
-main {
-  background: white;
-  margin: 1.5em;
-  /* TODO: find inspiration for about me */
-}
-main h1 {
+footer {
+  margin-top: 2.1em;
   text-align: center;
+  background-color: #1e2727;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  nav .navLogo {
+    margin-left: 0.5em;
+  }
+  nav .githubLink {
+    margin-right: 0.5em;
+  }
+  nav .myRedirects {
+    display: none;
+  }
+  nav .compressedRedirects {
+    display: block;
+    margin-right: 1em;
+  }
+  nav .compressedRedirects .dropdownContent {
+    right: 1rem;
+  }
+}
+.divHeader {
+  color: white;
+  background-color: #003b3b;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 1em 1em 3em;
+  margin: 1.5em;
+}
+.divHeader h1 {
+  text-align: left;
+}
+.divHeader h2 {
+  text-align: center;
+}
+
+main {
+  background-color: white;
+  margin: -2em 1.5em 1.5em;
+}
+main .aboutMeSection {
+  margin-top: -0.5em;
+}
+main .aboutMeSection h3 {
+  margin-left: 1rem;
+}
+main .aboutMeSection p {
+  font-size: 1.2rem;
+  text-align: center;
+  white-space: pre-line;
+  line-height: 1.5em;
+}
+main .aboutMeSection ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+}
+main .aboutMeSection ul li {
+  margin-left: 2rem;
+  text-align: center;
+}
+main .aboutMeSection ul li a {
+  text-decoration: none;
+  color: black;
+}
+main .aboutMeSection ul li img {
+  width: 12rem;
+}
+
+.bottom {
+  height: 2em;
+  background-color: white;
+  border-radius: 5px;
+  margin: -2.5em 1.5em 1.5em;
+}
+
+@media only screen and (max-width: 600px) {
+  .divHeader {
+    padding: 1em 1em 0 1em;
+    display: block;
+  }
+  .divHeader h1 {
+    text-align: center;
+  }
+  .divHeader h2 {
+    text-align: center;
+  }
+
+  main .aboutMeSection ul {
+    display: block;
+  }
+  main .aboutMeSection ul li {
+    margin-left: 0;
+  }
 }
 
 /*# sourceMappingURL=aboutMe.css.map */

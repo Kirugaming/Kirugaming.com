@@ -6,6 +6,4 @@ function compressedRedirects() {
     document.getElementById("redirectDropdown").classList.toggle("hide");
     document.getElementById("redirectDropdown").classList.toggle("show");
 
-    console.log(document.getElementById("redirectDropdown").classList)
-
 }

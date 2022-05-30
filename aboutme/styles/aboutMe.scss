@@ -7,15 +7,95 @@
   }
 
 
-  @import "../../styles/header";
+@import "../../styles/header";
 
-main {
-  background: white;
+.divHeader {
+  color: white;
+  background-color: #003b3b;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 1em 1em 3em;
   margin: 1.5em;
 
   h1 {
-    text-align: center;
+    text-align: left;
   }
 
-  /* TODO: find inspiration for about me */
+  h2 {
+    text-align: center;
+  }
+}
+
+main {
+  background-color: white;
+  margin: -2em 1.5em 1.5em;
+
+  .aboutMeSection {
+    margin-top: -.5em;
+
+    h3 {
+      margin-left: 1rem;
+    }
+
+    p{
+      font-size: 1.2rem;
+      text-align: center;
+      white-space: pre-line;
+      line-height: 1.5em;
+    }
+
+    ul {
+      display: flex;
+      list-style-type: none;
+      justify-content: center;
+
+      li {
+        margin-left: 2rem;
+        text-align: center;
+
+        a {
+          text-decoration: none;
+          color: black;
+        }
+
+        img {
+          width: 12rem;
+        }
+      }
+    }
+  }
+}
+
+.bottom {
+  height: 2em;
+  background-color: white;
+  border-radius: 5px;
+  margin: -2.5em 1.5em 1.5em;
+}
+
+@media only screen and (max-width: 600px) {
+  .divHeader {
+    padding: 1em 1em 0 1em;
+    display: block;
+
+    h1 {
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+    }
+  }
+  main {
+    .aboutMeSection {
+      ul {
+        display: block;
+
+        li {
+          margin-left: 0;
+        }
+      }
+    }
+  }
 }

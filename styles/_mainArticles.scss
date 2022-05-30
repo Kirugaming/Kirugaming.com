@@ -96,3 +96,17 @@
 
 }
 
+
+@media only screen and (max-width: 600px) {
+  .articleContainer {
+    label {
+      text-align: center;
+      padding: 1em 1em 1em 1em;
+    }
+    .pyBattleSection{
+      grid-template-columns: auto;
+    }
+  }
+}
+
+
