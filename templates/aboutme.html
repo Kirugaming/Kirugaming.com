@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='scss/aboutMe.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="divHeader">
+        <h1>About Me</h1>
+        <h2>Hey yo! It's me, Kiru!</h2>
+        <h1 style="color: #003b3b; margin-left: 5.5em">.</h1>
+    </div>
+    <main>
+        <div class="aboutMeSection">
+            <p>
+                Hey, you can call me by my pseudonym Kiru.
+                I am currently an aspiring computer science student looking to major and work in the computer science field, specifically in gaming development.
+                I often diverge and work on other small projects like this website and discord bots.
+                The programming languages that I know:
+            </p>
+            <ul>
+                <li>
+                    <img src="../static/images/Java_programming_language_logo.svg.png" alt="Java logo" style="width: 4rem">
+                    <p>Java</p>
+                </li>
+                <li>
+                    <img src="../static/images/1200px-Python-logo-notext.svg.png" alt="Python logo" style="width: 6.5rem">
+                    <p>Python</p>
+                </li>
+                <li>
+                    <img src="../static/images/CSS3_logo_and_wordmark.svg.png" alt="CSS logo" style="width: 5rem">
+                    <p>CSS</p>
+                </li>
+                <li>
+                    <img src="../static/images/1200px-ISO_C++_Logo.svg.png" alt="C++ logo" style="width: 6.2rem">
+                    <p>C++</p>
+                </li>
+            </ul>
+            <p>
+                I use many programming languages like Java, Python, and CSS, and I am currently learning C++.
+                Some of my Projects:
+            </p>
+            <ul>
+                <li>
+                    <a href="https://github.com/Kirugaming/pyBattle">
+                        <img src="../static/images/Screenshot%202022-04-18%20015056.png" alt="pybattle screenshot">
+                        <p>PyBattle</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/Kirugaming/KiruBot3.0">
+                        <img src="../static/images/Screenshot%202022-04-18%20015737.png" alt="kirubot screenshot">
+                        <p>KiruBot 3.0</p>
+                    </a>
+                </li>
+            </ul>
+            <p>
+                Please look forward to the many projects yet to come!
+                I love experimenting and messing with technology in my spare time. I have modded most of my Nintendo consoles and currently researching neat features of Linux that Windows lacks.
+                My favorite video games include Final Fantasy XIV Online, The Elder Scrolls V: Skyrim, Minecraft Java Edition, Destiny 1, And the Pokémon Series.
+            </p>
+            <ul>
+                <li>
+                    <img src="../static/images/capsule_616x353.jpg" alt="ffxiv">
+                    <p>Final Fantasy XIV Online</p>
+                </li>
+                <li>
+                    <img src="../static/images/header.jpg" alt="skyrim">
+                    <p>The Elder Scrolls V: Skyrim</p>
+                </li>
+                <li>
+                    <img src="../static/images/unnamed.webp" alt="minecraft">
+                    <p>Minecraft Java Edition</p>
+                </li>
+                <li>
+                    <img src="../static/images/Destiny-PC-Steam-840844.jpg" alt="destiny">
+                    <p>Destiny 1</p>
+                </li>
+                <li>
+                    <img src="../static/images/1280x720.webp" alt="pokemon">
+                    <p>The Pokémon Series</p>
+                </li>
+            </ul>
+            <!--TODO: Turn game list into a slideshow -->
+            <p>
+                If you need to contact me you can use the email link at the bottom of the page.
+            </p>
+        </div>
+    </main>
+    <div class="bottom"></div>
+{% endblock %}

@@ -1,0 +1,251 @@
+/* Variables */
+/* Mixins */
+@font-face {
+  src: url(../../fonts/Roboto/Roboto-Regular.ttf);
+  font-family: Roboto, sans-serif;
+}
+* {
+  font-family: Roboto, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body Style */
+a:link, a:visited {
+  text-decoration: none;
+}
+
+/* navbar */
+body {
+  height: 100vh;
+}
+
+@keyframes backroundColor {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+.redHeader {
+  border: 2px outset darkred;
+  background-color: darkred;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1e2727;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+nav .navLogo {
+  margin-left: 4em;
+}
+nav .navLogo img {
+  float: left;
+}
+nav .navLogo h1 {
+  padding-top: 4px;
+  float: left;
+  color: white;
+}
+nav .myRedirects h1 {
+  float: left;
+  color: white;
+  padding-top: 4px;
+}
+nav .myRedirects p {
+  color: white;
+  float: left;
+  font-size: 1.7em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+nav .myRedirects .githubLink {
+  margin-right: 4em;
+  float: left;
+}
+nav .myRedirects .githubLink img {
+  width: 2em;
+  /* for svg file i guess you have to use filter to change the color */
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(137deg) brightness(103%) contrast(101%);
+  margin-right: 0.1em;
+}
+nav .myRedirects .githubLink h1 {
+  float: right;
+  color: white;
+  padding-top: 4px;
+}
+nav .compressedRedirects {
+  float: right;
+  margin-right: 4em;
+  display: none;
+}
+nav .compressedRedirects .dropdownButton {
+  background-color: #1e2727;
+  width: 2em;
+  border: none;
+  cursor: pointer;
+}
+nav .compressedRedirects .dropdownButton img {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(137deg) brightness(103%) contrast(101%);
+}
+nav .compressedRedirects .dropdownContent {
+  position: fixed;
+  right: 4rem;
+  padding: 0.5rem;
+  background-color: #1e2727;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+}
+nav .compressedRedirects .dropdownContent a {
+  text-align: right;
+  font-size: 1.5em;
+  padding-bottom: 0.5em;
+  display: flex;
+  color: white;
+}
+
+footer {
+  margin-top: 2.1em;
+  text-align: center;
+  background-color: #1e2727;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  nav .navLogo {
+    margin-left: 0.5em;
+  }
+  nav .githubLink {
+    margin-right: 0.5em;
+  }
+  nav .myRedirects {
+    display: none;
+  }
+  nav .compressedRedirects {
+    display: block;
+    margin-right: 1em;
+  }
+  nav .compressedRedirects .dropdownContent {
+    right: 1rem;
+  }
+}
+body {
+  background-image: url("../images/johto.gif");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.blog {
+  display: flex;
+}
+.blog .filterContainer {
+  margin-top: 3em;
+  margin-left: 4em;
+  margin-right: 4em;
+  text-align: center;
+}
+.blog .filterContainer form {
+  padding-top: 1em;
+  justify-content: center;
+}
+.blog .entriesContainer .entryHeader {
+  grid-area: header;
+}
+.blog .entriesContainer .entryContent {
+  grid-area: content;
+  margin-top: -1rem;
+}
+.blog .entriesContainer .entryBottom {
+  grid-area: bottom;
+}
+.blog .entriesContainer .entryContainer {
+  display: grid;
+  grid-template-areas: "header" "content" "bottom";
+  padding: 3em 3em 1em;
+  border-radius: 10px;
+}
+.blog .entriesContainer .entryContainer div {
+  background-color: white;
+}
+.blog .entriesContainer .entryContainer div h2 {
+  display: flex;
+  justify-content: left;
+  float: left;
+  padding: 15px 1em 25px;
+}
+.blog .entriesContainer .entryContainer div .tag {
+  color: darkred;
+}
+.blog .entriesContainer .entryContainer div h3 {
+  display: flex;
+  justify-content: right;
+  padding: 20px 1em;
+}
+.blog .entriesContainer .entryContainer div p {
+  padding: 15px 1em 15px 1.5em;
+}
+.blog .entriesContainer .entryContainer .entryHeader {
+  background-color: #003b3b;
+  color: white;
+  border-radius: 10px;
+}
+.blog .entriesContainer .entryContainer .entryBottom {
+  margin-top: -0.5em;
+  padding-bottom: 1em;
+  background-color: white;
+  border-radius: 5px;
+}
+.blog input {
+  padding: 0.3em 1em;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  body #txt1 {
+    padding-bottom: 5px;
+  }
+  body #txt2 {
+    padding-bottom: 5px;
+  }
+  body #txt3 {
+    padding-bottom: 5px;
+  }
+  body #txt4 {
+    padding-bottom: 5px;
+  }
+  body #txt5 {
+    padding-bottom: 5px;
+  }
+  body #entryDate {
+    padding-top: 0;
+  }
+  body #filterContainer {
+    position: absolute;
+    margin-top: 0.2em;
+    margin-right: 0.5em;
+    margin-left: 2em;
+  }
+  body #filterContainer form {
+    float: left;
+  }
+}
+
+/*# sourceMappingURL=blog.css.map */

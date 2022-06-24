@@ -1,0 +1,32 @@
+/* Variables */
+
+
+/* Mixins */
+@mixin dropdownFunction($displayType) {
+  display: $displayType;
+  pointer-events: all;
+  transform: translateY(0px);
+}
+
+@font-face {
+    src: url(../../fonts/Roboto/Roboto-Regular.ttf);
+    font-family: Roboto, sans-serif;
+  }
+  
+  * {
+    font-family: Roboto, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Body Style */
+  a:link, a:visited {
+    text-decoration: none;
+  }
+  /* navbar */
+@import "../../styles/header";
+
+@import "mainArticles";
+
+
