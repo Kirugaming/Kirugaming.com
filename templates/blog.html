@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='scss/blog.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    <div class="blog">
+        <div class="entriesContainer">
+            {% for entry in entries %}
+            <div class="entryContainer">
+                <div class="entryHeader">
+                    <h2 id="txt1">{{ entry.title }}</h2>
+                    <h2 id="txt2">|</h2>
+                    {% if entry.tag == 'General' %}
+                    <h2 id="txt3" class="tag" style="color: dodgerblue">{{ entry.tag }}</h2>
+                    {% endif %}
+                    {% if entry.tag == 'Review' %}
+                    <h2  id="txt4" class="tag" style="color: darkred">{{ entry.tag }}</h2>
+                    {% endif %}
+                    {% if entry.tag == 'DevLog' %}
+                    <h2 id="txt5" class="tag" style="color: green">Dev Log</h2>
+                    {% endif %}
+                    <h3 id="entryDate">{{ entry.date_created.date()  }}</h3>
+                </div>
+                <div class="entryContent">
+                    <p>
+                        {{ entry.content }}
+                    </p>
+                </div>
+                <div class="entryBottom"></div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="filterContainer" id="filterContainer">
+            <form action="/blog" method="GET">
+                <input type="submit" value="No Filtering">
+                </form>
+                <form action="/blog/General" method="GET">
+                    <input type="submit" value="General">
+                </form>
+                <form action="/blog/DevLog" method="GET">
+                    <input type="submit" value="Dev Log">
+                </form>
+                <form action="/blog/Review" method="GET">
+                    <input type="submit" value="Review">
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

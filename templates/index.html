@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='scss/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<main>
+
+	<div class="articleContainer">
+		<label class="pyBattleHeader" tabindex="0" for="dropdown">
+		pyBattle - Ongoing Project!
+	</label>
+		<input
+				type="checkbox"
+				value="checkbox"
+				id="dropdown"
+				style="display: none"
+		/>
+		<div class="pyBattleSection">
+			<p class="pyBattleBody">
+				pyBattle is a text based fantasy adventure game written completely in Python. <br>
+				TODO for pyBattle so far:<br>
+				[x] Character Creation<br>
+				[x] Town System<br>
+				[x] Combat System<br>
+				[x] Adventure<br>
+				[ ] Dungeons<br>
+				[ ] Camping<br>
+				update: going to go unfinished for now while i work on other things :)
+				If you have any suggestions you would like to add to the game be sure to contact me about
+				them.
+			</p>
+				<a href="https://github.com/Kirugaming/pyBattle">
+					<img src="../static/images/svg/github-brands.svg" alt="GitHub Logo">
+					<p>pyBattle GitHub</p>
+				</a>
+		</div>
+		<div class="pyBattleBottom"></div>
+
+		<label class="dropdownHeader" tabindex="0" for="dropdown2">
+			Future Projects!
+		</label>
+		<input
+				type="checkbox"
+				value="checkbox"
+				id="dropdown2"
+				style="display: none"
+		/>
+		<div class="dropdownSection">
+			<p class="pyBattleBody">
+				I have many more projects yet to come, so check back regularly!
+
+			</p>
+
+		</div>
+		<div class="bottomSection"></div>
+	</div>
+
+</main>
+
+{% endblock %}

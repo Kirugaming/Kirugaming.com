@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Kiru's Website</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <script src="https://kit.fontawesome.com/90c0c27d8b.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div class="redHeader"></div>
+			<nav>
+				<div class="navLogo">
+					<a href="./">
+						<!-- Website Link -->
+						<img src="{{ url_for('static', filename='images/circlekiru.png') }}" alt="Site Logo">
+						<h1>Kiru's Website</h1>
+					</a>
+				</div>
+
+				<div class="myRedirects">
+					<a href="/blog">
+						<h1>Blog</h1>
+						<p>|</p>
+					</a>
+					<a class="aboutMe" href="./about">
+						<h1>About Me</h1>
+						<p>|</p>
+					</a>
+					<a href="https://github.com/Kirugaming">
+						<div class="githubLink">
+						<!-- Github Link -->
+						<img src="{{ url_for('static', filename='images/svg/github-brands.svg') }}" alt="GitHub Logo">
+						<h1>GitHub</h1>
+						</div>
+					</a>
+				</div>
+
+				<div class="compressedRedirects">
+					<button onclick="compressedRedirects()" class="dropdownButton">
+						<img src="{{ url_for('static', filename='images/svg/bars-solid.svg') }}" alt="nav">
+					</button>
+					<div id="redirectDropdown" class="dropdownContent">
+						<a class="blog" href="/blog">Blog in development?!</a>
+						<a class="aboutMe" href="/about">About Me</a>
+						<a href="https://github.com/Kirugaming">Github</a>
+					</div>
+				</div>
+				<script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+			</nav>
+
+        {% block body %}{% endblock %}
+        <footer>
+			<a href ="mailto:kiruthegreat2@gmail.com">Email: Kiruthegreat2@gmail.com</a>
+			<div class="redHeader"></div>
+		</footer>
+    </body>
+</html>
