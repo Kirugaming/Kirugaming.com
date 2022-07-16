@@ -13,7 +13,9 @@
         <input type="text" name="title" id="title">
 
         <label for="blogContent">Blog Content</label>
-        <textarea id="blogContent" name="blogContent" rows="4" cols="50"></textarea>
+        {{ ckeditor.load() }}
+        {{ ckeditor.create() }}
+        {{ ckeditor.config(width=500) }}
 
         <label for="tag">Select Tag</label>
         <select name="tag" id="tag">
@@ -24,6 +26,26 @@
 
         <input type="submit" value="Sumbit Blog entry">
     </form>
+
+    <h2>Edit a post</h2>
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>added</th>
+            <th>Actions</th>
+        </tr>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.content }}</td>
+            <td>{{ entry.date_created.date() }}</td>
+            <td>
+                <a href="/entrywriter/delete/{{ entry.id }}">Delete</a>
+                <br>
+                <a href="/entrywriter/update/{{ entry.id }}">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 
 
 </body>

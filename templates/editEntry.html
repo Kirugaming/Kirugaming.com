@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='scss/blogWriter.css') }}">
+  <title>Entry Writer</title>
+</head>
+<body>
+
+    <h2>Update Entry</h2>
+    <form action="/entrywriter/update/{{ entry.id }}" method="POST">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" value="{{ entry.title }}">
+
+        <label for="blogContent">Blog Content</label>
+        {{ ckeditor.load() }}
+        {{ ckeditor.create(value=entry.content) }}
+        {{ ckeditor.config(width=500) }}
+
+        <label for="tag">Select Tag</label>
+        <select name="tag" id="tag">
+            <option value="General">General</option>
+            <option value="DevLog">Dev Log</option>
+            <option value="Review">Review</option>
+        </select>
+
+        <input type="submit" value="Update Blog entry">
+    </form>
+
+
+</body>
+</html>

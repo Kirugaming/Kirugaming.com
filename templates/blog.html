@@ -26,9 +26,7 @@
                     <h3 id="entryDate">{{ entry.date_created.date()  }}</h3>
                 </div>
                 <div class="entryContent">
-                    <p>
-                        {{ entry.content }}
-                    </p>
+                    {{ entry.content|safe }}
                 </div>
                 <div class="entryBottom"></div>
             </div>

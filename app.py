@@ -1,5 +1,6 @@
 import flask_login
 from flask import Flask, render_template, request, redirect, url_for
+from flask_ckeditor import CKEditor
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, UserMixin
 from flask_sqlalchemy import SQLAlchemy
@@ -12,9 +13,10 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+ckeditor = CKEditor(app)
 
 
-# database models
+# Create a table for blog entries
 class BlogEntries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tag = db.Column(db.String(200), nullable=False)
@@ -26,6 +28,7 @@ class BlogEntries(db.Model):
         return '<entry %r>' % self.id
 
 
+# Create a table for accounts
 class Accounts(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Integer, nullable=False)
@@ -92,11 +95,13 @@ def login():
 @app.route('/entrywriter', methods=["POST", "GET"])
 @flask_login.login_required
 def entryWriter():
+    entries = BlogEntries.query.order_by(BlogEntries.date_created.desc()).all()
+
     if request.method != "POST":
-        return render_template("entryWriter.html")
+        return render_template("entryWriter.html", entries=entries)
 
     entry_title = request.form['title']
-    entry_content = request.form['blogContent']
+    entry_content = request.form['ckeditor']
     entry_tag = request.form['tag']
     new_entry = BlogEntries(title=entry_title, content=entry_content, tag=entry_tag)
 
@@ -108,5 +113,41 @@ def entryWriter():
         return "There was an error adding this entry to the blog :("
 
 
+@app.route('/entrywriter/update/<int:id>', methods=["POST", "GET"])
+@flask_login.login_required
+def editEntry(id):
+    entries = BlogEntries.query.order_by(BlogEntries.date_created.desc()).all()
+
+    if request.method != "POST":
+        entry = BlogEntries.query.filter_by(id=id).first()
+        return render_template("editEntry.html", entry=entry)
+
+    entry_title = request.form['title']
+    entry_content = request.form['ckeditor']
+    entry_tag = request.form['tag']
+    entry = BlogEntries.query.filter_by(id=id).first()
+    entry.title = entry_title
+    entry.content = entry_content
+    entry.tag = entry_tag
+
+    try:
+        db.session.commit()
+        return redirect("/blog")
+    except:
+        return "There was an error adding this entry to the blog :("
+
+
+@app.route('/entrywriter/delete/<int:id>', methods=["POST", "GET"])
+@flask_login.login_required
+def deleteEntry(id):
+    entry = BlogEntries.query.filter_by(id=id).first()
+    try:
+        db.session.delete(entry)
+        db.session.commit()
+        return redirect("/blog")
+    except:
+        return "There was an error deleting this entry from the blog :("
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0")
