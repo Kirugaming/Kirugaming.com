@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="17c94063-2ebf-417b-b122-152ca6122e2c" name="Kirugaming.com">
+        <fileTransfer rootFolder="/root/Kirugaming.com" accessType="SFTP" host="178.128.132.237" port="22" sshConfigId="7d6f54f1-e3dc-41e3-bae0-a9b3e1b34f8b" sshConfig="root@178.128.132.237:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

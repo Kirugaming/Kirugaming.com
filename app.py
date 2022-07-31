@@ -1,4 +1,6 @@
 import flask_login
+import requests
+import json
 from flask import Flask, render_template, request, redirect, url_for
 from flask_ckeditor import CKEditor
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -106,6 +108,31 @@ def entryWriter():
     new_entry = BlogEntries(title=entry_title, content=entry_content, tag=entry_tag)
 
     try:
+        # Push webhook to discord server
+        webhook_content = {
+            "content": None,
+            "embeds": [
+                {
+                    "title": f"{entry_title}",
+                    "description": "Go check it out!",
+                    "url": "https://Kirugaming.com/blog",
+                    "color": 6225920,
+                    "author": {
+                        "name": "A new post was added to the blog!"
+                    },
+                    "timestamp": f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                    "image": {
+                        "url": "https://c.tenor.com/OKVIq4Vx3r0AAAAd/dangerous-bear.gif"
+                    }
+                }
+            ],
+            "attachments": []
+        }
+        requests.post(
+            'https://discord.com/api/webhooks/1003124317992779846/VUrG8AhZ2rONLsKX4XeoM6oMrZXCC9TzkWmdE3ORvQeL4KGPBfq8lP66bOuOBH4KSaU4',
+            data=json.dumps(webhook_content),
+            headers={'Content-Type': 'application/json'})
+        # Add entry to database
         db.session.add(new_entry)
         db.session.commit()
         return redirect("/blog")
