@@ -11,6 +11,13 @@
   padding: 0;
 }
 
+body {
+  background: linear-gradient(-45deg, #474242, #2c2929, #2e3436, #141a18);
+  background-size: 400% 400%;
+  position: relative;
+  animation: backroundColor 10s ease-in-out infinite;
+}
+
 /* Body Style */
 a:link, a:visited {
   text-decoration: none;
@@ -19,10 +26,6 @@ a:link, a:visited {
 /* navbar */
 body {
   height: 100vh;
-  background: linear-gradient(-45deg, #474242, #2c2929, #2e3436, #141a18);
-  background-size: 400% 400%;
-  position: relative;
-  animation: backroundColor 10s ease-in-out infinite;
 }
 
 @keyframes backroundColor {
@@ -194,15 +197,6 @@ footer {
   font-size: 1.5em;
   text-decoration: underline;
 }
-.articleContainer .pyBattleBottom {
-  margin-top: -0.5em;
-  margin-right: 1.9em;
-  margin-left: 1.9em;
-  padding-bottom: 1em;
-  background-color: white;
-  border-radius: 5px;
-  display: none;
-}
 .articleContainer .dropdownSection {
   margin-top: -0.5em;
   margin-left: 1.9em;
@@ -213,7 +207,7 @@ footer {
   display: none;
   background-color: white;
 }
-.articleContainer .bottomSection {
+.articleContainer .bottom {
   margin-top: -0.5em;
   margin-right: 1.9em;
   margin-left: 1.9em;
@@ -222,12 +216,12 @@ footer {
   border-radius: 5px;
   display: none;
 }
-.articleContainer #dropdown:checked ~ .pyBattleSection {
+.articleContainer #dropdown:checked ~ #section {
   display: inline-grid;
   pointer-events: all;
   transform: translateY(0px);
 }
-.articleContainer #dropdown:checked ~ .pyBattleBottom {
+.articleContainer #dropdown:checked ~ #pyBattleBottom {
   display: flex;
   pointer-events: all;
   transform: translateY(0px);
@@ -237,7 +231,17 @@ footer {
   pointer-events: all;
   transform: translateY(0px);
 }
-.articleContainer #dropdown2:checked ~ .bottomSection {
+.articleContainer #dropdown2:checked ~ #dropdownBottom {
+  display: flex;
+  pointer-events: all;
+  transform: translateY(0px);
+}
+.articleContainer #dropdown3:checked ~ #kiruBotSection {
+  display: inline-grid;
+  pointer-events: all;
+  transform: translateY(0px);
+}
+.articleContainer #dropdown3:checked ~ #kiruBotBottom {
   display: flex;
   pointer-events: all;
   transform: translateY(0px);

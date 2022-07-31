@@ -19,13 +19,26 @@
     margin: 0;
     padding: 0;
   }
+
+body {
+  background: linear-gradient(
+  -45deg,
+  rgb(71, 66, 66),
+  #2c2929,
+  #2e3436,
+  #141a18
+  );
+  background-size: 400% 400%;
+  position: relative;
+  animation: backroundColor 10s ease-in-out infinite;
+}
   
   /* Body Style */
   a:link, a:visited {
     text-decoration: none;
   }
   /* navbar */
-@import "../../styles/header";
+@import "header";
 
 @import "mainArticles";
 

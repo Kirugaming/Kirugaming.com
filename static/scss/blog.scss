@@ -140,7 +140,12 @@ body {
       padding-bottom: 5px;
       font-size: 1em;
     }
+    #txt5 {
+      padding-bottom: 5px;
+      font-size: 1em;
+    }
     #entryDate {
+      margin-top: 20px;
       padding-bottom: 5px;
       margin-bottom: 20px;
       font-size: 1em;
@@ -160,10 +165,13 @@ body {
       display: flex;
       overflow: hidden;
       order: 1;
-      margin-top: .5em !important;
-      margin-left: 2em !important;
-      margin-right: 1em !important;
+      margin-top: 1em !important;
+      margin-left: 1em !important;
       justify-content: center;
+
+      input {
+        font-size: .75em;
+      }
     }
   }
 }
