@@ -198,8 +198,6 @@ body {
   padding: 20px 1em;
 }
 .blog .entriesContainer .entryContainer div p {
-  display: flex;
-  justify-content: left;
   padding: 10px 1em;
 }
 .blog .entriesContainer .entryContainer div .blogBorder {

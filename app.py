@@ -46,10 +46,7 @@ class Accounts(UserMixin, db.Model):
 
 @login_manager.user_loader
 def load_user(user_id):
-    user = Accounts.query.filter_by(id=user_id).first()
-    if user:
-        return user
-    return None
+    return user if (user := Accounts.query.filter_by(id=user_id).first()) else None
 
 
 @app.route('/')
@@ -122,7 +119,7 @@ def entryWriter():
                     },
                     "timestamp": f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
                     "image": {
-                        "url": "https://c.tenor.com/OKVIq4Vx3r0AAAAd/dangerous-bear.gif"
+                        "url": "https://media.discordapp.net/attachments/821916065210433596/962010623204528249/5D827026-C8C3-41BE-AF6A-A0CAC4591BA0.gif"
                     }
                 }
             ],
