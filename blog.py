@@ -9,10 +9,7 @@ from werkzeug.security import check_password_hash
 from app import app
 from model import *
 
-
-
 login_manager = LoginManager()
-
 login_manager.login_view = 'login'
 
 
@@ -65,9 +62,16 @@ def entryWriter():
     new_entry = BlogEntries(title=entry_title, content=entry_content, tag=entry_tag)
 
     try:
-        webhook_content = {"content": None, "embeds": [{"title": f"{entry_title}", "description": "Go check it out!", "url": "https://Kirugaming.com/blog", "color": 6225920, "author": {"name": "A new post was added to the blog!"}, "timestamp": f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", "image": {"url": "https://media.discordapp.net/attachments/821916065210433596/962010623204528249/5D827026-C8C3-41BE-AF6A-A0CAC4591BA0.gif"}}], "attachments": []}
+        webhook_content = {"content": None, "embeds": [
+            {"title": f"{entry_title}", "description": "Go check it out!", "url": "https://Kirugaming.com/blog",
+             "color": 6225920, "author": {"name": "A new post was added to the blog!"},
+             "timestamp": f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", "image": {
+                "url": "https://media.discordapp.net/attachments/821916065210433596/962010623204528249/5D827026-C8C3-41BE-AF6A-A0CAC4591BA0.gif"}}],
+                           "attachments": []}
 
-        requests.post('https://discord.com/api/webhooks/1003124317992779846/VUrG8AhZ2rONLsKX4XeoM6oMrZXCC9TzkWmdE3ORvQeL4KGPBfq8lP66bOuOBH4KSaU4', data=json.dumps(webhook_content), headers={'Content-Type': 'application/json'})
+        requests.post(
+            'https://discord.com/api/webhooks/1003124317992779846/VUrG8AhZ2rONLsKX4XeoM6oMrZXCC9TzkWmdE3ORvQeL4KGPBfq8lP66bOuOBH4KSaU4',
+            data=json.dumps(webhook_content), headers={'Content-Type': 'application/json'})
 
         db.session.add(new_entry)
         db.session.commit()

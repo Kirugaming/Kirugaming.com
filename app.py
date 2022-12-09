@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 
 db.init_app(app)
 from blog import *
+from admin import *
 
 login_manager.init_app(app)
 ckeditor = CKEditor(app)

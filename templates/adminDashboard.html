@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='scss/adminDashboard.css') }}">
+    <title>Title</title>
+</head>
+<body>
+<div id="redHeader"></div>
+
+<h1 id="header">Admin Dashboard -ALPHA-</h1>
+
+<div id="container">
+    <div class="siteControl">
+
+        <h2>Main part of the website</h2>
+        <button id="projectImport">Import project description from github</button>
+        <!-- Project import modal -->
+
+        <div id="projectImportModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Import project description from github</h2>
+                <form>
+                    <label for="projectLink">Project link</label>
+                    <input type="text" id="projectLink" name="projectlink" placeholder="Project link..">
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+
+
+        <p>Existing Projects</p>
+        <ul>
+            {% for project in projects %}
+                <li>{{ project.name }} | <button>Update</button><button>Delete</button></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="siteControl">
+        <h2>Blog part of the website</h2>
+        <button id="blogWrite">Write a new blog post</button>
+        <!-- Blog write modal -->
+
+        <div id="blogWriteModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Write a new blog post</h2>
+                <form>
+                    <label for="blogTitle">Title</label>
+                    <input type="text" id="blogTitle" name="blogtitle" placeholder="Title..">
+
+                    <label for="blogContent">Content</label>
+                    <textarea id="blogContent" name="blogcontent" placeholder="Write something.." style="height:200px"></textarea>
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+
+        <p>Blog Posts</p>
+        <ul>
+            {% for post in posts %}
+                <li>{{ post.title }} | <button>Update</button><button>Delete</button></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script>
+    const projectModal = document.getElementById("projectImportModal");
+    const projectBtn = document.getElementById("projectImport");
+    const projectSpan = document.getElementsByClassName("close")[0];
+
+    const blogModal = document.getElementById("blogWriteModal");
+    const blogBtn = document.getElementById("blogWrite");
+    const blogSpan = document.getElementsByClassName("close")[1];
+
+    projectBtn.onclick = function() {
+        projectModal.style.display = "block";
+    }
+
+    projectSpan.onclick = function() {
+        projectModal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target === projectModal) {
+            projectModal.style.display = "none";
+        }
+    }
+
+    blogBtn.onclick = function() {
+        blogModal.style.display = "block";
+    }
+
+    blogSpan.onclick = function() {
+        blogModal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target === blogModal) {
+            blogModal.style.display = "none";
+        }
+    }
+
+</script>
+
+</body>
+</html>
