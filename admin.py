@@ -11,7 +11,6 @@ def convertMarkdownToHTML(projectMarkdown):
     return title, html
 
 
-
 @app.route('/admin', methods=["POST", "GET"])
 def admin():
     if request.method != "POST":
@@ -23,7 +22,10 @@ def admin():
     if request.form['SubmitProject'] == 'SubmitProject':
         project_link = request.form['ProjectLink']
 
-        readme = project_link.replace('github.com', 'raw.githubusercontent.com').replace('https://', 'https://').replace('http://', 'https://').replace('github.com', 'raw.githubusercontent.com').replace('blob/', '')
+        readme = project_link.replace('github.com', 'raw.githubusercontent.com').replace('https://',
+                                                                                         'https://').replace('http://',
+                                                                                                             'https://').replace(
+            'github.com', 'raw.githubusercontent.com').replace('blob/', '')
         readme += '/master/README.md'
         convertMarkdownToHTML(requests.get(readme).text)
 
@@ -31,7 +33,8 @@ def admin():
         project_description = convertMarkdownToHTML(requests.get(readme).text)[1]
 
         date_created = datetime.now()
-        new_project = Projects(title=project_title, description=project_description, link=project_link, date_created=date_created)
+        new_project = Projects(title=project_title, description=project_description, link=project_link,
+                               date_created=date_created)
         db.session.add(new_project)
         db.session.commit()
         return redirect("/")

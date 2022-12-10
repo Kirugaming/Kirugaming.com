@@ -15,9 +15,10 @@ login_manager.init_app(app)
 ckeditor = CKEditor(app)
 
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 def home():
-    return render_template("index.html")
+    projects = Projects.query.order_by(Projects.date_created.desc()).all()
+    return render_template("index.html", projects=projects)
 
 
 @app.route('/about')
