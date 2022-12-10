@@ -6,82 +6,31 @@
 
 {% block body %}
 <main>
-
-	<div class="articleContainer">
-        <label class="pyBattleHeader" tabindex="0" for="dropdown3">
-		KiruBot3.0 - A Python-based Discord Bot
-	</label>
-		<input
-				type="checkbox"
-				value="checkbox"
-				id="dropdown3"
-				style="display: none"
-		/>
-		<div class="pyBattleSection" id="kiruBotSection">
-			<p class="pyBattleBody">
-				KiruBot 3.0 <br>
-                A private discord bot using the discord.py library. <br>
-                I don't make my bot publicly available but if there is a lot of support for it ill release it. <br>
-                Check my blog for more updates on the bot. <br>
-				If you have any suggestions you would like to add to the game be sure to contact me about
-				them.
-			</p>
-				<a href="https://github.com/Kirugaming/KiruBot3.0">
+    <div class="projectContainer">
+        {% for project in projects %}
+        <details class="dropdown">
+            <summary class="dropdownHeader">{{ project.title }}</summary>
+            <div class="bodyContainer">
+                <div class="projectBody">{{ project.description | safe }}</div>
+                <a href="{{ project.link }}">
 					<img src="../static/images/svg/github-brands.svg" alt="GitHub Logo">
-					<p>KiruBot3.0 GitHub</p>
+					<p>GitHub Project Link</p>
 				</a>
-		</div>
-        <div class="bottom" id="kiruBotBottom"></div>
+            </div>
 
-		<label class="pyBattleHeader" tabindex="0" for="dropdown">
-		pyBattle - Text based adventure game
-	    </label>
-		<input
-				type="checkbox"
-				value="checkbox"
-				id="dropdown"
-				style="display: none"
-		/>
-		<div class="pyBattleSection" id="section">
-			<p class="pyBattleBody">
-				pyBattle is a text based fantasy adventure game written completely in Python. <br>
-				TODO for pyBattle so far:<br>
-				[x] Character Creation<br>
-				[x] Town System<br>
-				[x] Combat System<br>
-				[x] Adventure<br>
-				[ ] Dungeons<br>
-				[ ] Camping<br>
-				update: going to go unfinished for now while i work on other things :) <br>
-				If you have any suggestions you would like to add to the game be sure to contact me about
-				them.
-			</p>
-				<a href="https://github.com/Kirugaming/pyBattle">
-					<img src="../static/images/svg/github-brands.svg" alt="GitHub Logo">
-					<p>pyBattle GitHub</p>
-				</a>
-		</div>
-		<div class="bottom" id="pyBattleBottom"></div>
 
-		<label class="dropdownHeader" tabindex="0" for="dropdown2">
-			Future Projects!
-		</label>
-		<input
-				type="checkbox"
-				value="checkbox"
-				id="dropdown2"
-				style="display: none"
-		/>
-		<div class="dropdownSection">
-			<p class="pyBattleBody">
-				I have many more projects yet to come, so check back regularly!
+            <div class="projectBottom"></div>
+        </details>
+        {% endfor %}
 
-			</p>
-
-		</div>
-		<div class="bottom" id="dropdownBottom"></div>
-	</div>
-
+        <details class="dropdown">
+            <summary class="dropdownHeader">Future Projects!</summary>
+            <div id="futureBody">
+            <p>I have many more projects yet to come, so check back regularly!</p>
+            </div>
+            <div class="projectBottom"></div>
+        </details>
+    </div>
 </main>
 
 {% endblock %}

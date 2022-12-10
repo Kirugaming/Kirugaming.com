@@ -152,14 +152,12 @@ footer {
     right: 1rem;
   }
 }
-.articleContainer {
+.projectContainer {
   display: flex;
   flex-direction: column;
-  /* pyBattle Section */
   /* Future Section */
 }
-.articleContainer label {
-  display: inline-block;
+.projectContainer .dropdown .dropdownHeader {
   margin-top: 1em;
   margin-right: 1.85em;
   margin-left: 1.85em;
@@ -171,33 +169,60 @@ footer {
   font-size: 1em;
   font-weight: bold;
 }
-.articleContainer .pyBattleSection {
+.projectContainer .dropdown .bodyContainer {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.projectContainer .dropdown .bodyContainer .projectBody {
+  grid-column: 1;
+  background-color: white;
+  line-height: 2;
   margin-top: -0.5em;
   margin-left: 1.9em;
-  margin-right: 1.9em;
   padding-top: 1em;
   padding-left: 1em;
   padding-bottom: 0.5em;
-  display: none;
-  grid-template-columns: auto auto;
+}
+.projectContainer .dropdown .bodyContainer .projectBody ul {
+  margin-left: 1em;
+}
+.projectContainer .dropdown .bodyContainer a {
+  grid-column: 2;
+  margin-top: -0.5em;
+  margin-right: 1.9em;
+  padding-top: 1em;
+  padding-left: 1em;
   background-color: white;
 }
-.articleContainer .pyBattleSection .pyBattleBody {
-  background-color: white;
-  line-height: 2;
-  float: left;
-}
-.articleContainer .pyBattleSection a img {
+.projectContainer .dropdown .bodyContainer a img {
   float: left;
   width: 2em;
 }
-.articleContainer .pyBattleSection a p {
+.projectContainer .dropdown .bodyContainer a p {
   margin-left: 0.1em;
   color: black;
   font-size: 1.5em;
   text-decoration: underline;
 }
-.articleContainer .dropdownSection {
+.projectContainer .dropdown #futureBody {
+  background-color: white;
+  line-height: 2;
+  margin-top: -0.5em;
+  margin-left: 1.9em;
+  margin-right: 1.9em;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 0.5em;
+}
+.projectContainer .dropdown .projectBottom {
+  margin-top: -0.5em;
+  margin-right: 1.9em;
+  margin-left: 1.9em;
+  padding-bottom: 1em;
+  background-color: white;
+  border-radius: 5px;
+}
+.projectContainer .dropdownSection {
   margin-top: -0.5em;
   margin-left: 1.9em;
   margin-right: 1.9em;
@@ -207,7 +232,7 @@ footer {
   display: none;
   background-color: white;
 }
-.articleContainer .bottom {
+.projectContainer .bottom {
   margin-top: -0.5em;
   margin-right: 1.9em;
   margin-left: 1.9em;
@@ -216,43 +241,43 @@ footer {
   border-radius: 5px;
   display: none;
 }
-.articleContainer #dropdown:checked ~ #section {
+.projectContainer #dropdown:checked ~ #section {
   display: inline-grid;
   pointer-events: all;
   transform: translateY(0px);
 }
-.articleContainer #dropdown:checked ~ #pyBattleBottom {
+.projectContainer #dropdown:checked ~ #projectBottom {
   display: flex;
   pointer-events: all;
   transform: translateY(0px);
 }
-.articleContainer #dropdown2:checked ~ .dropdownSection {
+.projectContainer #dropdown2:checked ~ .dropdownSection {
   display: flex;
   pointer-events: all;
   transform: translateY(0px);
 }
-.articleContainer #dropdown2:checked ~ #dropdownBottom {
+.projectContainer #dropdown2:checked ~ #dropdownBottom {
   display: flex;
   pointer-events: all;
   transform: translateY(0px);
 }
-.articleContainer #dropdown3:checked ~ #kiruBotSection {
+.projectContainer #dropdown3:checked ~ #kiruBotSection {
   display: inline-grid;
   pointer-events: all;
   transform: translateY(0px);
 }
-.articleContainer #dropdown3:checked ~ #kiruBotBottom {
+.projectContainer #dropdown3:checked ~ #kiruBotBottom {
   display: flex;
   pointer-events: all;
   transform: translateY(0px);
 }
 
 @media only screen and (max-width: 600px) {
-  .articleContainer label {
+  .projectContainer label {
     text-align: center;
     padding: 1em 1em 1em 1em;
   }
-  .articleContainer .pyBattleSection {
+  .projectContainer .projectSection {
     grid-template-columns: auto;
   }
 }

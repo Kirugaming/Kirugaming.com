@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='scss/adminDashboard.css') }}">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+<div id="redHeader"></div>
+
+<h1 id="header">Admin Dashboard -BETA-</h1>
+
+<div id="container">
+    <div class="siteControl">
+
+        <h2>Main part of the website</h2>
+        <button id="projectImport">Import project description from github</button>
+        <!-- Project import modal -->
+
+        <div id="projectImportModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Import project description from github</h2>
+                <form action="/admin" method="POST">
+                    <label for="ProjectLink">Link:</label>
+                    <input type="text" name="ProjectLink" id="ProjectLink">
+
+                    <input type="submit" name="SubmitProject" value="SubmitProject">
+                </form>
+            </div>
+        </div>
+
+
+        <p>Existing Projects</p>
+        <ul>
+            {% for project in projects %}
+                <li>{{ project.title }} |
+                    <button onclick="window.location.href='/admin/updateProject/{{ project.id }}'">Update</button>
+                    <button onclick="window.location.href='/admin/deleteProject/{{ project.id }}'">Delete</button></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="siteControl">
+        <h2>Blog part of the website</h2>
+        <button id="blogWrite">Write a new blog post</button>
+        <!-- Blog write modal -->
+
+        <div id="blogWriteModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Write a new blog post</h2>
+                <form action="/admin" method="POST">
+                    <label for="blogTitle">Title</label>
+                    <input type="text" id="blogTitle" name="blogTitle" placeholder="Title:">
+
+                    <label for="blogContent"><br>Blog Content:</label>
+                    {{ ckeditor.load() }}
+                    {{ ckeditor.create() }}
+                    {{ ckeditor.config(width=500) }}
+
+                    <label for="tag">Select Tag</label>
+                    <select name="tag" id="tag">
+                        <option value="General">General</option>
+                        <option value="DevLog">Dev Log</option>
+                        <option value="Review">Review</option>
+                    </select>
+                    <br>
+                    <input type="submit" name="SubmitPost" value="SubmitPost">
+                </form>
+            </div>
+        </div>
+
+        <p>Blog Posts</p>
+        <ul>
+            {% for post in posts %}
+                <li>{{ post.title }} |
+                    <button onclick="updatePost({{ post.id }})">Update</button>
+                    <button onclick="window.location.href='/admin/deletePost/{{ post.id }}'">Delete</button></li>
+            {% endfor %}
+        </ul>
+        <!-- modal for updating blog posts -->
+        <div id="blogUpdateModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Update blog post</h2>
+                <form action="/admin" method="POST">
+                    <label for="blogTitle">Title</label>
+                    <input type="text" id="updateBlogTitle" name="blogTitle" placeholder="Title:">
+
+                    <label for="blogContent"><br>Blog Content:</label>
+                    {{ ckeditor.load() }}
+                    {{ ckeditor.create() }}
+                    {{ ckeditor.config(width=500) }}
+
+                    <label for="tag">Select Tag</label>
+                    <select name="tag" id="tag">
+                        <option value="General">General</option>
+                        <option value="DevLog">Dev Log</option>
+                        <option value="Review">Review</option>
+                    </select>
+                    <br>
+                    <input type="submit" name="UpdatePost" value="UpdatePost">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Create modals
+    const projectModal = document.getElementById("projectImportModal");
+    const projectBtn = document.getElementById("projectImport");
+    const projectSpan = document.getElementsByClassName("close")[0];
+
+    projectBtn.onclick = function() {
+        projectModal.style.display = "block";
+    }
+
+    projectSpan.onclick = function() {
+        projectModal.style.display = "none";
+    }
+
+    const blogModal = document.getElementById("blogWriteModal");
+    const blogBtn = document.getElementById("blogWrite");
+    const blogSpan = document.getElementsByClassName("close")[1];
+
+
+    blogBtn.onclick = function() {
+        blogModal.style.display = "block";
+    }
+
+    blogSpan.onclick = function() {
+        blogModal.style.display = "none";
+    }
+
+    // update modal for blog entries
+    const blogPosts = {{ posts|tojson|safe }};
+
+    const blogUpdateModal = document.getElementById("blogUpdateModal");
+    const blogUpdateSpan = document.getElementsByClassName("close")[2];
+
+    blogUpdateSpan.onclick = function() {
+        blogUpdateModal.style.display = "none";
+    }
+
+    function updatePost(id) {
+        blogUpdateModal.style.display = "block";
+        const blogPost = blogPosts.find(post => post.id === id);
+
+        document.getElementById("updateBlogTitle").value = blogPost.title;
+        CKEDITOR.instances.ckeditor.setData(blogPost.content);
+
+    }
+
+    window.onclick = function(event) {
+        if (event.target === projectModal) {
+            projectModal.style.display = "none";
+        } else if (event.target === blogModal) {
+            blogModal.style.display = "none";
+        } else if (event.target === blogUpdateModal) {
+            blogUpdateModal.style.display = "none";
+        }
+    }
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
