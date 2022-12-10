@@ -15,6 +15,15 @@ class BlogEntries(db.Model):
     content = db.Column(db.String, nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'tag': self.tag,
+            'title': self.title,
+            'content': self.content,
+            'date_created': self.date_created
+        }
+
     def __repr__(self):
         return '<entry %r>' % self.id
 
