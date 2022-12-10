@@ -15,3 +15,4 @@ Flask-SQLAlchemy~=2.5.1
 Flask-Login~=0.6.1
 Flask-WTF~=1.0.1
 Flask-CKEditor~=0.4.6
+Markdown~=3.4.1
