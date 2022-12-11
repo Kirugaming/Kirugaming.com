@@ -14,6 +14,8 @@ from admin import *
 login_manager.init_app(app)
 ckeditor = CKEditor(app)
 
+db.create_all(app=app)
+
 
 @app.route('/', methods=["GET"])
 def home():

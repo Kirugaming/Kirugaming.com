@@ -10,26 +10,17 @@
     <div class="blog">
         <div class="entriesContainer">
             {% for entry in entries %}
-            <div class="entryContainer">
-                <div class="entryHeader">
-                    <h2 id="txt1">{{ entry.title }}</h2>
-                    <h2 id="txt2">|</h2>
-                    {% if entry.tag == 'General' %}
-                    <h2 id="txt3" class="tag" style="color: dodgerblue">{{ entry.tag }}</h2>
-                    {% endif %}
-                    {% if entry.tag == 'Review' %}
-                    <h2  id="txt4" class="tag" style="color: darkred">{{ entry.tag }}</h2>
-                    {% endif %}
-                    {% if entry.tag == 'DevLog' %}
-                    <h2 id="txt5" class="tag" style="color: green">Dev Log</h2>
-                    {% endif %}
+            <details class="entryContainer">
+            <summary class="entryHeader">
+                    <h2 class="blogTitle">{{ entry.title }} <p class="divider"> | </p>{% if entry.tag == 'General' %}<p class="tag" style="color: dodgerblue">{{entry.tag}}</p>{% endif %}{% if entry.tag == 'Review' %}<p class="tag" style="color: darkred">{{ entry.tag }}</p>{% endif %}{% if entry.tag == 'DevLog' %}<p class="tag" style="color: green">Dev Log</p>{% endif %}</h2>
+
                     <h3 id="entryDate">{{ entry.date_created.date()  }}</h3>
-                </div>
+            </summary>
                 <div class="entryContent">
                     {{ entry.content|safe }}
                 </div>
                 <div class="entryBottom"></div>
-            </div>
+            </details>
             {% endfor %}
         </div>
         <div class="filterContainer" id="filterContainer">
