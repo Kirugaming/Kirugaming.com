@@ -11,14 +11,54 @@
         <div class="entriesContainer">
             {% for entry in entries %}
             <details class="entryContainer">
-            <summary class="entryHeader">
-                    <h2 class="blogTitle">{{ entry.title }} <p class="divider"> | </p>{% if entry.tag == 'General' %}<p class="tag" style="color: dodgerblue">{{entry.tag}}</p>{% endif %}{% if entry.tag == 'Review' %}<p class="tag" style="color: darkred">{{ entry.tag }}</p>{% endif %}{% if entry.tag == 'DevLog' %}<p class="tag" style="color: green">Dev Log</p>{% endif %}</h2>
+                <summary class="entryHeader">
+                        <h2 class="blogTitle">{{ entry.title }} <p class="divider"> | </p>{% if entry.tag == 'General' %}<p class="tag" style="color: dodgerblue">{{entry.tag}}</p>{% endif %}{% if entry.tag == 'Review' %}<p class="tag" style="color: darkred">{{ entry.tag }}</p>{% endif %}{% if entry.tag == 'DevLog' %}<p class="tag" style="color: green">Dev Log</p>{% endif %}</h2>
 
-                    <h3 id="entryDate">{{ entry.date_created.date()  }}</h3>
-            </summary>
+                        <h3 id="entryDate">{{ entry.date_created.date()  }}</h3>
+                </summary>
                 <div class="entryContent">
                     {{ entry.content|safe }}
                 </div>
+                <hr>
+                <!-- comments -->
+
+                <div class="commenterContainer">
+                {% if not discord.authorized %}
+                    <div class="login">
+                        <form action="{{ url_for('discord.login') }}" method="get">
+                            <label for="DiscordLogin">Login Through Discord to Comment</label>
+                            <input type="submit" name="DiscordLogin" id="DiscordLogin" value="Login">
+                        </form>
+                    </div>
+                {% endif %}
+                    <div class="commentWrite">
+                        <img class="avatar" src="https://cdn.discordapp.com/avatars/{{ user['id'] }}/{{ user['avatar'] }}.png" alt="user avatar">
+                        <p>{{ user['username'] }}, Logged in through Discord.</p>
+                        <form action="/blog" method="POST">
+                            <input type="text" style="display: none" name="BlogId" value="{{ entry.id }}" readonly>
+                            <input type="text" style="display: none" name="userid" value="{{ user['id'] }}" readonly>
+                            <input type="text" style="display: none" name="username" value="{{ user['username'] }}" readonly>
+                            <input type="text" style="display: none" name="avatar" value="{{ user['avatar'] }}" readonly>
+                            <label for="CommentWrite" style="float: top">Comment: </label>
+                            <textarea id="CommentWrite" name="CommentWrite" rows="4" cols="120"></textarea>
+                            <label for="CommentSubmit">Submit Comment:</label>
+                            <input type="submit" name="CommentSubmit" id="CommentSubmit" value="Submit Comment">
+                        </form>
+                    </div>
+                </div>
+                <hr>
+                <div class="comments">
+                    {% for comment in comments %}
+                        {% if comment.blog_id == entry.id %}
+                            <img class="avatar" src="https://cdn.discordapp.com/avatars/{{ comment.user_id }}/{{ comment.avatar_hash }}.png">
+                            <p class="commentAvatar">{{ comment.user }}</p> <p style="float: right">{{ comment.date_created.date()  }}</p><br>
+                            <p class="comment">{{ comment.comment }}</p>
+                            <hr>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+
                 <div class="entryBottom"></div>
             </details>
             {% endfor %}

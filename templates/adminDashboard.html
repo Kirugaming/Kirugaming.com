@@ -74,6 +74,7 @@
         <ul>
             {% for post in posts %}
                 <li>{{ post.title }} |
+                    <button onclick="">Comments</button>
                     <button onclick="updatePost({{ post.id }})">Update</button>
                     <button onclick="window.location.href='/admin/deletePost/{{ post.id }}'">Delete</button></li>
             {% endfor %}
@@ -84,8 +85,9 @@
                 <span class="close">&times;</span>
                 <h2>Update blog post</h2>
                 <form action="/admin" method="POST">
-                    <label for="blogTitle">Title</label>
-                    <input type="text" id="updateBlogTitle" name="blogTitle" placeholder="Title:">
+                    <input type="text" style="display: none" id='BlogId' name="BlogId" value="" readonly>
+                    <label for="updateBlogTitle">Title</label>
+                    <input type="text" id="updateBlogTitle" name="updateBlogTitle" placeholder="Title:">
 
                     <label for="blogContent"><br>Blog Content:</label>
                     {{ ckeditor.load() }}
@@ -101,8 +103,18 @@
                     <br>
                     <input type="submit" name="UpdatePost" value="UpdatePost">
                 </form>
+                <!-- comments -->
+                <table id="commentTable" style="width:100%">
+                    <tr>
+                        <th>User</th>
+                        <th>Comment</th>
+                        <th>Date</th>
+                        <th>Options</th>
+                    </tr>
+                </table>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -133,8 +145,10 @@
         blogModal.style.display = "none";
     }
 
+
     // update modal for blog entries
     const blogPosts = {{ posts|tojson|safe }};
+    const comments = {{ comments|tojson|safe }}
 
     const blogUpdateModal = document.getElementById("blogUpdateModal");
     const blogUpdateSpan = document.getElementsByClassName("close")[2];
@@ -147,8 +161,30 @@
         blogUpdateModal.style.display = "block";
         const blogPost = blogPosts.find(post => post.id === id);
 
+        document.getElementById('BlogId').value = blogPost.id;
         document.getElementById("updateBlogTitle").value = blogPost.title;
         CKEDITOR.instances.ckeditor.setData(blogPost.content);
+
+        const commentTable = document.getElementsByClassName('commentTable');
+        while(commentTable[0]) {
+            commentTable[0].parentNode.removeChild(commentTable[0]);
+        }
+
+        comments.forEach(function (comment) {
+            if (comment['blog_id'] === id) {
+                const commentTable = document.createElement("tr");
+                commentTable.appendChild(document.createElement('td')).appendChild(document.createTextNode(comment['user']));
+                commentTable.appendChild(document.createElement('td')).appendChild(document.createTextNode(comment['comment']));
+                commentTable.appendChild(document.createElement('td')).appendChild(document.createTextNode(comment['date_created']));
+                const button = document.createElement('button');
+                button.onclick = function () {window.location.href='/admin/deleteComment/'+comment['id']};
+                button.appendChild(document.createTextNode("Delete"));
+                commentTable.appendChild(button);
+
+                commentTable.classList.add('commentTable');
+                document.getElementById('commentTable').appendChild(commentTable)
+            }
+        })
 
     }
 

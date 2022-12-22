@@ -16,3 +16,5 @@ Flask-Login~=0.6.1
 Flask-WTF~=1.0.1
 Flask-CKEditor~=0.4.6
 Markdown~=3.4.1
+Flask-Dance~=6.2.0
+python-dotenv

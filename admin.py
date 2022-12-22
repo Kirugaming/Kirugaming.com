@@ -49,9 +49,12 @@ def admin():
         # seralize each in list
         posts = [post.serialize() for post in posts]
 
+        comments = BlogComments.query.order_by(BlogComments.date_created.desc()).all()
+        comments = [comment.serialize() for comment in comments]
+
         projects = Projects.query.order_by(Projects.date_created.desc()).all()
 
-        return render_template("adminDashboard.html", posts=posts, projects=projects)
+        return render_template("adminDashboard.html", posts=posts, projects=projects, comments=comments)
 
     if request.form.get('SubmitProject') == 'SubmitProject':
         project_link = request.form['ProjectLink']
@@ -96,14 +99,13 @@ def admin():
             return redirect("/blog")
         except:
             return "failed to publish post"
+    print(request.form)
     if request.form.get('UpdatePost') == 'UpdatePost':
-        entry_title = request.form.get('blogTitle')
-        entry_content = request.form.get('ckeditor')
-        entry_tag = request.form.get('tag')
-        entry = BlogEntries.query.filter_by(title=entry_title).first()
-        entry.title = entry_title
-        entry.content = entry_content
-        entry.tag = entry_tag
+        blog_id = request.form.get('BlogId')
+        entry = BlogEntries.query.filter_by(id=blog_id).first()
+        entry.title = request.form.get('updateBlogTitle')
+        entry.content = request.form.get('ckeditor')
+        entry.tag = request.form.get('tag')
         db.session.commit()
         return redirect("/blog")
 
@@ -152,3 +154,11 @@ def deletePost(id):
         return redirect("/admin")
     except:
         return "There was an error deleting this blog post from the entries :("
+
+@app.route('/admin/deleteComment/<int:id>', methods=["POST", "GET"])
+@flask_login.login_required
+def deleteComment(id):
+    comment = BlogComments.query.filter_by(id=id).first()
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect("/blog")

@@ -1,10 +1,17 @@
+import os
+from dotenv import load_dotenv
+
 from flask import Flask
 from flask_ckeditor import CKEditor
 
 from model import *
 
 app = Flask(__name__)
-app.secret_key = 'amongus'
+load_dotenv()
+app.secret_key = os.environ['SECRET_KEY']
+app.config["DISCORD_OAUTH_CLIENT_ID"] = os.environ['DISCORD_CLIENT_ID']
+app.config["DISCORD_OAUTH_CLIENT_SECRET"] = os.environ['DISCORD_CLIENT_SECRET']
+#os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' # set 1 for testing
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 
 db.init_app(app)

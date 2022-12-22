@@ -1,5 +1,4 @@
-from datetime import datetime
-
+from datetime import datetime, timezone
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 
@@ -26,6 +25,30 @@ class BlogEntries(db.Model):
 
     def __repr__(self):
         return '<entry %r>' % self.id
+
+
+class BlogComments(db.Model):
+    blog_id = db.Column(db.Integer, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(200), nullable=False)
+    user = db.Column(db.String(200), nullable=False)
+    avatar_hash = db.Column(db.String(200), nullable=False)
+    comment = db.Column(db.String, nullable=False)
+    date_created = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+
+    def serialize(self):
+        return {
+            'blog_id': self.blog_id,
+            'id': self.id,
+            'user_id': self.user_id,
+            'user': self.user,
+            'avatar_hash': self.avatar_hash,
+            'comment': self.comment,
+            'date_created': self.date_created
+        }
+
+    def __repr__(self):
+        return '<comment %r>' % self.id
 
 
 class Projects(db.Model):
