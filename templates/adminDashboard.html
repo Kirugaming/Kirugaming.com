@@ -74,7 +74,6 @@
         <ul>
             {% for post in posts %}
                 <li>{{ post.title }} |
-                    <button onclick="">Comments</button>
                     <button onclick="updatePost({{ post.id }})">Update</button>
                     <button onclick="window.location.href='/admin/deletePost/{{ post.id }}'">Delete</button></li>
             {% endfor %}
