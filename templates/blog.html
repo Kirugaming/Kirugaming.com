@@ -10,7 +10,11 @@
     <div class="blog">
         <div class="entriesContainer">
             {% for entry in entries %}
+            {% if openId != entry.id %}
             <details class="entryContainer">
+            {% else %}
+            <details class="entryContainer" open>
+            {% endif %}
                 <summary class="entryHeader">
                         <h2 class="blogTitle">{{ entry.title }} <p class="divider"> | </p>{% if entry.tag == 'General' %}<p class="tag" style="color: dodgerblue">{{entry.tag}}</p>{% endif %}{% if entry.tag == 'Review' %}<p class="tag" style="color: darkred">{{ entry.tag }}</p>{% endif %}{% if entry.tag == 'DevLog' %}<p class="tag" style="color: green">Dev Log</p>{% endif %}</h2>
 
@@ -63,6 +67,7 @@
             </details>
             {% endfor %}
         </div>
+
         <div class="filterContainer" id="filterContainer">
             <form action="/blog" method="GET">
                 <input type="submit" value="No Filtering">

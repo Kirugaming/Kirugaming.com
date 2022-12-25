@@ -14,25 +14,23 @@ def blog():
 
     db.create_all()
     entries = BlogEntries.query.order_by(BlogEntries.date_created.desc()).all()
-    comments = BlogComments.query.order_by(BlogComments.date_created.desc()).all()
+    comments = BlogComments.query.order_by(BlogComments.date_created).all()
 
     return render_template("blog.html", entries=entries, comments=comments, discord=discord, user=user.json())
 
 
-@app.route('/blog', methods=["GET"])
-def blogGet():
+@app.route('/blog/<int:id>')
+def blogOpenPost(id):
+    user = discord.get('/api/v10/users/@me')
 
+    db.create_all()
+    entries = BlogEntries.query.order_by(BlogEntries.date_created.desc()).all()
+    comments = BlogComments.query.order_by(BlogComments.date_created).all()
 
-    print("test")
-    # form will bring to here were it will log in through discord OAuth2 so blog can get user information
-    if not discord.authorized:
-        if request.method == 'GET':
-            return redirect(url_for("discord.login"))
+    print(id)
 
-        user = discord.get('/api/v10/users/@me')
-        assert user.ok, user.text
-        print(user.status_code)
-        print(user.text)
+    return render_template("blog.html", entries=entries, comments=comments, discord=discord, user=user.json(),
+                           openId=id)
 
 
 @app.route('/blog', methods=["POST"])
@@ -55,10 +53,12 @@ def blogPost():
         db.session.add(new_comment)
         db.session.commit()
 
-        return redirect("/blog")
+
+        return redirect(f"/blog/{blog_id}")
 
 
-@app.route('/blog/<tag>', methods=["POST", "GET"])
+
+@app.route('/blog/<string:tag>', methods=["POST", "GET"])
 def blogFilter(tag):
     entries = BlogEntries.query.filter(BlogEntries.tag == tag).order_by(BlogEntries.date_created.desc()).all()
 

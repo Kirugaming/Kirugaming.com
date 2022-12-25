@@ -1,4 +1,5 @@
 import json
+import os
 
 import flask_login
 import requests, markdown
@@ -91,7 +92,7 @@ def admin():
                                "attachments": []}
 
             requests.post(
-                'https://discord.com/api/webhooks/1003124317992779846/VUrG8AhZ2rONLsKX4XeoM6oMrZXCC9TzkWmdE3ORvQeL4KGPBfq8lP66bOuOBH4KSaU4',
+                os.environ['ANNOUNCEMENT_WEBHOOK'],
                 data=json.dumps(webhook_content), headers={'Content-Type': 'application/json'})
 
             db.session.add(new_entry)
