@@ -1,3 +1,5 @@
+import os
+
 import requests
 from flask import render_template, request, redirect, url_for
 from flask_dance.contrib.discord import make_discord_blueprint, discord
@@ -18,6 +20,15 @@ def blog():
 
     return render_template("blog.html", entries=entries, comments=comments, discord=discord, user=user.json())
 
+@app.route('/logout')
+def logoutDiscord():
+    resp = discord.post(
+        "https://discord.com/api/oauth2/token/revoke",
+        data={"client_id": os.environ['DISCORD_CLIENT_ID'], "client_secret": os.environ['DISCORD_CLIENT_SECRET'], "token": discord_blueprint.token["access_token"]},
+        headers={"Content-Type": "application/x-www-form-urlencoded"}
+    )
+    del discord_blueprint.token
+    return redirect('/blog')
 
 @app.route('/blog/<int:id>')
 def blogOpenPost(id):

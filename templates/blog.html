@@ -67,20 +67,27 @@
             </details>
             {% endfor %}
         </div>
-
-        <div class="filterContainer" id="filterContainer">
-            <form action="/blog" method="GET">
-                <input type="submit" value="No Filtering">
+        <div id="rightSide">
+            <!-- Logout Button -->
+            {% if discord.authorized %}
+            <a href="{{ url_for('logoutDiscord') }}">
+                <button id="logoutButton">Logout of Discord</button>
+            </a>
+            {% endif %}
+            <div class="filterContainer" id="filterContainer">
+                <form action="/blog" method="GET">
+                    <input type="submit" value="No Filtering">
+                    </form>
+                    <form action="/blog/General" method="GET">
+                        <input type="submit" value="General">
+                    </form>
+                    <form action="/blog/DevLog" method="GET">
+                        <input type="submit" value="Dev Log">
+                    </form>
+                    <form action="/blog/Review" method="GET">
+                        <input type="submit" value="Review">
                 </form>
-                <form action="/blog/General" method="GET">
-                    <input type="submit" value="General">
-                </form>
-                <form action="/blog/DevLog" method="GET">
-                    <input type="submit" value="Dev Log">
-                </form>
-                <form action="/blog/Review" method="GET">
-                    <input type="submit" value="Review">
-            </form>
+            </div>
         </div>
     </div>
 

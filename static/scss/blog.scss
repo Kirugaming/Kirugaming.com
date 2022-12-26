@@ -35,8 +35,20 @@ body {
 .blog {
   display: flex;
 
-  .filterContainer {
+  #rightSide {
     float: right;
+
+    #logoutButton {
+      margin-top: 1em;
+      margin-left: 6em;
+      margin-right: 4em;
+      text-align: center;
+      padding: 0.3em 1em;
+      text-decoration: none;
+    }
+
+  .filterContainer {
+
     margin-top: 1em;
     margin-left: 6em;
     margin-right: 4em;
@@ -53,6 +65,9 @@ body {
       }
     }
   }
+  }
+
+
 
   .entriesContainer {
     width: 100%;

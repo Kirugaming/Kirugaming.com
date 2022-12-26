@@ -154,18 +154,28 @@ body {
 .blog {
   display: flex;
 }
-.blog .filterContainer {
+.blog #rightSide {
   float: right;
+}
+.blog #rightSide #logoutButton {
+  margin-top: 1em;
+  margin-left: 6em;
+  margin-right: 4em;
+  text-align: center;
+  padding: 0.3em 1em;
+  text-decoration: none;
+}
+.blog #rightSide .filterContainer {
   margin-top: 1em;
   margin-left: 6em;
   margin-right: 4em;
   text-align: center;
 }
-.blog .filterContainer form {
+.blog #rightSide .filterContainer form {
   padding-top: 1em;
   justify-content: center;
 }
-.blog .filterContainer form input {
+.blog #rightSide .filterContainer form input {
   padding: 0.3em 1em;
   text-decoration: none;
   text-align: center;
