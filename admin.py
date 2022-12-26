@@ -16,6 +16,7 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
+    # flask_login login | check hash with entered pass
     return user if (user := Accounts.query.filter_by(id=user_id).first()) else None
 
 
@@ -37,6 +38,7 @@ def login():
 
 
 def convertMarkdownToHTML(projectMarkdown):
+    # converts markdown of the GitHub pages readme but also gets the title for the project post
     html = markdown.markdown(projectMarkdown)
     title = html.splitlines()[0].replace("<h1>", "").replace("</h1>", "")
     return title, html
@@ -47,16 +49,19 @@ def convertMarkdownToHTML(projectMarkdown):
 def admin():
     if request.method != "POST":
         posts = BlogEntries.query.order_by(BlogEntries.date_created.desc()).all()
-        # seralize each in list
-        posts = [post.serialize() for post in posts]
-
         comments = BlogComments.query.order_by(BlogComments.date_created.desc()).all()
+        projects = Projects.query.order_by(Projects.date_created.desc()).all()
+
+        # serialize each in list, so we can use it in javascript
+        posts = [post.serialize() for post in posts]
         comments = [comment.serialize() for comment in comments]
 
-        projects = Projects.query.order_by(Projects.date_created.desc()).all()
+
 
         return render_template("adminDashboard.html", posts=posts, projects=projects, comments=comments)
 
+    # submit project form
+    # gets readme file from main project link on GitHub and converts that readme to be used on a project post
     if request.form.get('SubmitProject') == 'SubmitProject':
         project_link = request.form['ProjectLink']
 
@@ -76,6 +81,8 @@ def admin():
         db.session.commit()
         return redirect("/")
 
+    # submit blog post form
+    # sends webhook to my announcement channel before committing to db
     if request.form.get('SubmitPost') == 'SubmitPost':
         entry_title = request.form.get('blogTitle')
         entry_content = request.form.get('ckeditor')
@@ -100,7 +107,6 @@ def admin():
             return redirect("/blog")
         except:
             return "failed to publish post"
-    print(request.form)
     if request.form.get('UpdatePost') == 'UpdatePost':
         blog_id = request.form.get('BlogId')
         entry = BlogEntries.query.filter_by(id=blog_id).first()
@@ -110,7 +116,8 @@ def admin():
         db.session.commit()
         return redirect("/blog")
 
-
+# updates project description by replacing what is now on the GitHub pages readme
+# uses same link last used
 @app.route('/admin/updateProject/<int:id>', methods=["POST", "GET"])
 @flask_login.login_required
 def updateProject(id):
@@ -124,7 +131,6 @@ def updateProject(id):
     readme += '/master/README.md'
 
     project_description = convertMarkdownToHTML(requests.get(readme).text)[1]
-    print(readme)
     try:
         project.description = project_description
         db.session.commit()

@@ -62,7 +62,6 @@ class Projects(db.Model):
         return '<project %r>' % self.id
 
 
-# Create a table for accounts
 class Accounts(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Integer, nullable=False)
