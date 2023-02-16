@@ -12,7 +12,7 @@
 }
 
 body {
-  background: linear-gradient(-45deg, #474242, #2c2929, #2e3436, #141a18);
+  background: linear-gradient(-45deg, rgb(71, 66, 66), #2c2929, #2e3436, #141a18);
   background-size: 400% 400%;
   position: relative;
   animation: backroundColor 10s ease-in-out infinite;
@@ -195,8 +195,11 @@ footer {
   background-color: white;
 }
 .projectContainer .dropdown .bodyContainer a img {
+  width: 30em;
+}
+.projectContainer .dropdown .bodyContainer a #githubLogo {
   float: left;
-  width: 2em;
+  width: 2em !important;
 }
 .projectContainer .dropdown .bodyContainer a p {
   margin-left: 0.1em;

@@ -43,8 +43,12 @@
       padding-left: 1em;
       background-color: white;
       img {
+
+        width: 30em;
+      }
+      #githubLogo {
         float: left;
-        width: 2em;
+        width: 2em !important;
       }
       p {
         margin-left: 0.1em;
