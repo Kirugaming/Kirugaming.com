@@ -9,18 +9,45 @@ from model import *
 discord_blueprint = make_discord_blueprint(redirect_to='blog')
 app.register_blueprint(discord_blueprint, url_prefix="/login")
 
-
 @app.route('/blog')
 def blog():
+    return redirect("/blog/all/0")
+
+# /blog/(blog type you want to filter by)/(blog post that is open when page loads (usually for loading post after commenting))
+@app.route('/blog/<string:tag>/<int:blog_id>', methods=["POST", "GET"])
+def blogFilter(tag, blog_id):
     # get discord user info
     user = discord.get('/api/v10/users/@me')
+    # sort database by filter
+    if tag == "all":
+        entries = BlogEntries.query.order_by(BlogEntries.date_created.desc()).all()
+    else:
+        entries = BlogEntries.query.filter(BlogEntries.tag == tag).order_by(BlogEntries.date_created.desc()).all()
 
-    db.create_all()
-    # grab needed databases
-    entries = BlogEntries.query.order_by(BlogEntries.date_created.desc()).all()
     comments = BlogComments.query.order_by(BlogComments.date_created).all()
 
-    return render_template("blog.html", entries=entries, comments=comments, discord=discord, user=user.json())
+    # check if pfp's are outdated
+    checkAndUpdatePfps(comments)
+
+    return render_template("blog.html", entries=entries, comments=comments, discord=discord, user=user.json(),
+                           openId=blog_id)
+
+def checkAndUpdatePfps(comments):
+    for comment in comments:
+        # check all comments for old pfp's
+        if requests.get(f"https://cdn.discordapp.com/avatars/{comment.user_id}/{comment.avatar_hash}.png").status_code == 404:
+            # I HATE that i have to use a bot here because it will return unauthorized otherwise
+            response = requests.get(f'https://discord.com/api/users/{comment.user_id}', headers = {'Authorization': f'Bot {os.environ["BLOG_BOT_TOKEN"]}'})
+
+            if response.status_code == 200: # the happy http code
+                the_comment_in_question = BlogComments.query.filter_by(id=comment.id).first()
+                the_comment_in_question.avatar_hash = response.json()['avatar'] # the update in question
+
+                db.session.commit()
+            else:
+                print(f'Error: {response.status_code} - {response.text}')
+
+
 
 @app.route('/logout')
 def logoutDiscord():
@@ -33,19 +60,6 @@ def logoutDiscord():
     # also do this too!
     del discord_blueprint.token
     return redirect('/blog')
-
-@app.route('/blog/<int:id>')
-def blogOpenPost(id):
-    # get discord user info
-    user = discord.get('/api/v10/users/@me')
-
-    db.create_all()
-    # grab needed databases
-    entries = BlogEntries.query.order_by(BlogEntries.date_created.desc()).all()
-    comments = BlogComments.query.order_by(BlogComments.date_created).all()
-
-    return render_template("blog.html", entries=entries, comments=comments, discord=discord, user=user.json(),
-                           openId=id)
 
 
 @app.route('/blog', methods=["POST"])
@@ -69,13 +83,8 @@ def blogPost():
         db.session.commit()
 
 
-        return redirect(f"/blog/{blog_id}")
+        return redirect(f"/blog/all/{blog_id}")
 
 
 
-@app.route('/blog/<string:tag>', methods=["POST", "GET"])
-def blogFilter(tag):
-    # sort database by filter
-    entries = BlogEntries.query.filter(BlogEntries.tag == tag).order_by(BlogEntries.date_created.desc()).all()
 
-    return render_template("blog.html", entries=entries)

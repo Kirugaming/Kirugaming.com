@@ -16,7 +16,7 @@
             <details class="entryContainer" open>
             {% endif %}
                 <summary class="entryHeader">
-                        <h2 class="blogTitle">{{ entry.title }} <p class="divider"> | </p>{% if entry.tag == 'General' %}<p class="tag" style="color: dodgerblue">{{entry.tag}}</p>{% endif %}{% if entry.tag == 'Review' %}<p class="tag" style="color: darkred">{{ entry.tag }}</p>{% endif %}{% if entry.tag == 'DevLog' %}<p class="tag" style="color: green">Dev Log</p>{% endif %}</h2>
+                        <h2 class="blogTitle">{{ entry.title }} <p class="divider"> | </p>{% if entry.tag == 'general' %}<p class="tag" style="color: dodgerblue">General</p>{% endif %}{% if entry.tag == 'review' %}<p class="tag" style="color: darkred">Review</p>{% endif %}{% if entry.tag == 'dev' %}<p class="tag" style="color: green">Dev Log</p>{% endif %}</h2>
 
                         <h3 id="entryDate">{{ entry.date_created.date()  }}</h3>
                 </summary>
@@ -78,13 +78,13 @@
                 <form action="/blog" method="GET">
                     <input type="submit" value="No Filtering">
                     </form>
-                    <form action="/blog/General" method="GET">
+                    <form action="/blog/general/0" method="GET">
                         <input type="submit" value="General">
                     </form>
-                    <form action="/blog/DevLog" method="GET">
+                    <form action="/blog/dev/0" method="GET">
                         <input type="submit" value="Dev Log">
                     </form>
-                    <form action="/blog/Review" method="GET">
+                    <form action="/blog/review/0" method="GET">
                         <input type="submit" value="Review">
                 </form>
             </div>

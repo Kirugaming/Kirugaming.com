@@ -12,7 +12,7 @@
 }
 
 body {
-  background: linear-gradient(-45deg, rgb(71, 66, 66), #2c2929, #2e3436, #141a18);
+  background: linear-gradient(-45deg, #474242, #2c2929, #2e3436, #141a18);
   background-size: 400% 400%;
   position: relative;
   animation: backroundColor 10s ease-in-out infinite;
