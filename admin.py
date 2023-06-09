@@ -53,6 +53,7 @@ def admin():
         projects = Projects.query.order_by(Projects.date_created.desc()).all()
 
         # serialize each in list, so we can use it in javascript
+        projects = [project.serialize() for project in projects]
         posts = [post.serialize() for post in posts]
         comments = [comment.serialize() for comment in comments]
 
@@ -73,9 +74,9 @@ def admin():
 
         project_title = convertMarkdownToHTML(requests.get(readme).text)[0]
         project_description = convertMarkdownToHTML(requests.get(readme).text)[1]
-
+        project_contribution = request.form['ProjectContribution']
         date_created = datetime.now()
-        new_project = Projects(title=project_title, description=project_description, link=project_link,
+        new_project = Projects(title=project_title, description=project_description, contribution=project_contribution, link=project_link,
                                date_created=date_created)
         db.session.add(new_project)
         db.session.commit()
@@ -86,16 +87,16 @@ def admin():
     if request.form.get('SubmitPost') == 'SubmitPost':
         entry_title = request.form.get('blogTitle')
         entry_content = request.form.get('ckeditor')
-        entry_tag = request.form.get('tag')
+        entry_tag = request.form.get('tag').lower()
         new_entry = BlogEntries(title=entry_title, content=entry_content, tag=entry_tag)
 
         # discord webhook
-        try:
+        try: # TODO: random text bubble gifs
             webhook_content = {"content": None, "embeds": [
                 {"title": f"{entry_title}", "description": "Go check it out!", "url": "https://Kirugaming.com/blog",
                  "color": 6225920, "author": {"name": "A new post was added to the blog!"},
                  "timestamp": f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", "image": {
-                    "url": "https://media.discordapp.net/attachments/821916065210433596/962010623204528249/5D827026-C8C3-41BE-AF6A-A0CAC4591BA0.gif"}}],
+                    "url": "https://media.tenor.com/qZFDNRRo7bIAAAAd/cat-message-bubble.gif"}}],
                                "attachments": []}
 
             requests.post(
@@ -115,6 +116,13 @@ def admin():
         entry.tag = request.form.get('tag')
         db.session.commit()
         return redirect("/blog")
+    if request.form.get('SubmitUpdateProject') == 'SubmitUpdateProject':
+        project_id = request.form.get('ProjectId')
+        project = Projects.query.filter_by(id=project_id).first()
+        project.link = request.form.get('ProjectUpdateLink')
+        project.contribution = request.form.get('ProjectUpdateContribution')
+        db.session.commit()
+        return redirect("/")
 
 # updates project description by replacing what is now on the GitHub pages readme
 # uses same link last used

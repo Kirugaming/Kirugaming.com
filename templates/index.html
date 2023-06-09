@@ -11,11 +11,21 @@
         <details class="dropdown">
             <summary class="dropdownHeader">{{ project.title }}</summary>
             <div class="bodyContainer">
-                <div class="projectBody">{{ project.description | safe }}</div>
-                <a href="{{ project.link }}">
-					<img id="githubLogo" src="../static/images/svg/github-brands.svg" alt="GitHub Logo">
-					<p>GitHub Project Link</p>
-				</a>
+                <div class="projectBody">
+                    {{ project.description | safe }}
+                </div>
+
+                <div id="projectRight">
+                    <a href="{{ project.link }}">
+                        <img id="githubLogo" src="../static/images/svg/github-brands.svg" alt="GitHub Logo">
+                        <p>GitHub Project Link</p>
+                    </a>
+
+                    <div id="contributions">
+                        <p style="font-size: 1em; font-weight: bold">Contributions:</p>
+                        <p>{{ project.contribution }}</p>
+                    </div>
+                </div>
             </div>
 
 

@@ -33,32 +33,49 @@
         margin-left: 1em;
       }
 
+        img {
+          width: 30%;
+          object-fit: contain;
+          object-position: center;
+          border-radius: 5px;
+        }
+
       }
 
-    a {
+    #projectRight {
       grid-column: 2;
-      margin-top: -0.5em;
-      margin-right: 1.9em;
-      padding-top: 1em;
-      padding-left: 1em;
-      background-color: white;
-      img {
+        margin-top: -0.5em;
+        margin-right: 1.9em;
+        padding-top: 1em;
 
-        width: 30em;
-      }
-      #githubLogo {
-        float: left;
-        width: 2em !important;
-      }
-      p {
-        margin-left: 0.1em;
-        color: black;
-        font-size: 1.5em;
-        text-decoration: underline;
+        background-color: white;
+      a {
+        padding-left: 1em;
+        img {
+
+          width: 30em;
+        }
+        #githubLogo {
+          float: left;
+          padding-top: 1em;
+          width: 2em !important;
+        }
+        p {
+          margin-left: 0.1em;
+          color: black;
+          font-size: 1.5em;
+          text-decoration: underline;
+        }
       }
 
-
+      #contributions {
+        padding-top: 1em;
+      }
     }
+
+
+
+
     }
 
     #futureBody {

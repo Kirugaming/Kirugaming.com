@@ -25,7 +25,27 @@
                     <label for="ProjectLink">Link:</label>
                     <input type="text" name="ProjectLink" id="ProjectLink">
 
+                    <label for="ProjectContribution">Contribution:</label>
+                    <textarea name="ProjectContribution" id="ProjectContribution"></textarea>
+
                     <input type="submit" name="SubmitProject" value="SubmitProject">
+                </form>
+            </div>
+        </div>
+
+        <div id="projectUpdateModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Update Project</h2>
+                <form action="/admin" method="POST">
+                    <input type="text" style="display: none" id='ProjectId' name="ProjectId" value="" readonly>
+                    <label for="ProjectUpdateLink">Link:</label>
+                    <input type="text" name="ProjectUpdateLink" id="ProjectUpdateLink">
+
+                    <label for="ProjectUpdateContribution">Contribution:</label>
+                    <textarea name="ProjectUpdateContribution" id="ProjectUpdateContribution"></textarea>
+
+                    <input type="submit" name="SubmitUpdateProject" value="SubmitUpdateProject">
                 </form>
             </div>
         </div>
@@ -35,7 +55,7 @@
         <ul>
             {% for project in projects %}
                 <li>{{ project.title }} |
-                    <button onclick="window.location.href='/admin/updateProject/{{ project.id }}'">Update</button>
+                    <button onclick="updateProject({{ project.id }})">Update</button>
                     <button onclick="window.location.href='/admin/deleteProject/{{ project.id }}'">Delete</button></li>
             {% endfor %}
         </ul>
@@ -119,9 +139,12 @@
 
 <script>
     // Create modals
+    const projects = {{ projects | tojson | safe }};
+
     const projectModal = document.getElementById("projectImportModal");
     const projectBtn = document.getElementById("projectImport");
     const projectSpan = document.getElementsByClassName("close")[0];
+
 
     projectBtn.onclick = function() {
         projectModal.style.display = "block";
@@ -131,9 +154,25 @@
         projectModal.style.display = "none";
     }
 
+   // update project post
+    const projectUpdateSpan = document.getElementsByClassName("close")[1];
+    const projectUpdateModal = document.getElementById("projectUpdateModal");
+
+    projectUpdateSpan.onclick = function() {
+        projectUpdateModal.style.display = "none";
+    }
+    function updateProject(id) {
+        projectUpdateModal.style.display = "block";
+        const project = projects.find(project => project.id === id);
+
+        document.getElementById("ProjectId").value = id;
+        document.getElementById("ProjectUpdateLink").value = project.link;
+        document.getElementById("ProjectUpdateContribution").value = project.contribution;
+    }
+
     const blogModal = document.getElementById("blogWriteModal");
     const blogBtn = document.getElementById("blogWrite");
-    const blogSpan = document.getElementsByClassName("close")[1];
+    const blogSpan = document.getElementsByClassName("close")[2];
 
 
     blogBtn.onclick = function() {
@@ -147,10 +186,10 @@
 
     // update modal for blog entries
     const blogPosts = {{ posts|tojson|safe }};
-    const comments = {{ comments|tojson|safe }}
+    const comments = {{ comments|tojson|safe }};
 
     const blogUpdateModal = document.getElementById("blogUpdateModal");
-    const blogUpdateSpan = document.getElementsByClassName("close")[2];
+    const blogUpdateSpan = document.getElementsByClassName("close")[3];
 
     blogUpdateSpan.onclick = function() {
         blogUpdateModal.style.display = "none";
@@ -194,6 +233,8 @@
             blogModal.style.display = "none";
         } else if (event.target === blogUpdateModal) {
             blogUpdateModal.style.display = "none";
+        } else if (event.target === projectUpdateModal) {
+            projectUpdateModal.style.display = "none";
         }
     }
 

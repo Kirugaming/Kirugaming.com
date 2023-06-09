@@ -186,26 +186,38 @@ footer {
 .projectContainer .dropdown .bodyContainer .projectBody ul {
   margin-left: 1em;
 }
-.projectContainer .dropdown .bodyContainer a {
+.projectContainer .dropdown .bodyContainer .projectBody img {
+  width: 30%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 5px;
+}
+.projectContainer .dropdown .bodyContainer #projectRight {
   grid-column: 2;
   margin-top: -0.5em;
   margin-right: 1.9em;
   padding-top: 1em;
-  padding-left: 1em;
   background-color: white;
 }
-.projectContainer .dropdown .bodyContainer a img {
+.projectContainer .dropdown .bodyContainer #projectRight a {
+  padding-left: 1em;
+}
+.projectContainer .dropdown .bodyContainer #projectRight a img {
   width: 30em;
 }
-.projectContainer .dropdown .bodyContainer a #githubLogo {
+.projectContainer .dropdown .bodyContainer #projectRight a #githubLogo {
   float: left;
+  padding-top: 1em;
   width: 2em !important;
 }
-.projectContainer .dropdown .bodyContainer a p {
+.projectContainer .dropdown .bodyContainer #projectRight a p {
   margin-left: 0.1em;
   color: black;
   font-size: 1.5em;
   text-decoration: underline;
+}
+.projectContainer .dropdown .bodyContainer #projectRight #contributions {
+  padding-top: 1em;
 }
 .projectContainer .dropdown #futureBody {
   background-color: white;

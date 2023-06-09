@@ -55,9 +55,19 @@ class Projects(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.String, nullable=False)
+    contribution = db.Column(db.String, nullable=False)
     link = db.Column(db.String, nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'contribution': self.contribution,
+            'link': self.link,
+            'date_created': self.date_created
+        }
     def __repr__(self):
         return '<project %r>' % self.id
 
