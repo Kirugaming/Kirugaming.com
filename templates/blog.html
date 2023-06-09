@@ -9,7 +9,7 @@
 {% block body %}
     <div class="blog">
         <div class="entriesContainer">
-            {% for entry in entries %}
+            {% for entry in entries.items %}
             {% if openId != entry.id %}
             <details class="entryContainer">
             {% else %}
@@ -52,7 +52,7 @@
                 </div>
                 <hr>
                 <div class="comments">
-                    {% for comment in comments %}
+                    {% for comment in comments.items %}
                         {% if comment.blog_id == entry.id %}
                             <img class="avatar" src="https://cdn.discordapp.com/avatars/{{ comment.user_id }}/{{ comment.avatar_hash }}.png">
                             <p class="commentAvatar">{{ comment.user }}</p> <p style="float: right">{{ comment.date_created.date()  }}</p><br>
